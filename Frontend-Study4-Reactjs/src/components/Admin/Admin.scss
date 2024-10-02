@@ -1,0 +1,26 @@
+.admin-container {
+    overflow: hidden;
+    display: flex;
+    .admin-sidebar {
+        .pro-sidebar {
+            height: 100vh !important;
+        }
+    }
+    .admin-content {
+      
+        width: 100%;
+        overflow: scroll;
+        .admin-header {
+            height: 40px;
+            border: 1px solid green;
+        }
+        .admin-main {
+            height: calc(100vh - 40px);
+            
+            .user_pagination {
+                display: flex;
+                justify-content: center;
+            }
+        }
+    }
+}

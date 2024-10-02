@@ -1,0 +1,81 @@
+.main-course {
+    .sp-item-title {
+        font-weight: 600;
+        font-size: 1.2rem;
+        .float-right {
+            float: right !important;
+        }
+        .badge-success,
+        .result-badge-full {
+            color: #fff;
+            background-color: #3cb46e;
+        }
+    }
+}
+
+.learncourse-unit {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.35rem;
+    margin: 30px 0;
+    .card-header {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 0;
+        background-color: rgba(0, 0, 0, 0.03);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        .course-heading,
+        .learncourse-heading {
+            font-size: 1.1rem !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+    }
+    .card-body {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 1px;
+        padding: 1.25rem;
+
+        .learncourse-progressbar {
+            .progress-percent {
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+            .progress {
+                height: 10px;
+                border-radius: 5px;
+                background-color: #eee;
+                line-height: 0;
+                font-size: 0.75rem;
+
+                .progress-bar {
+                    background-color: #3cb46e !important;
+                    flex-direction: column;
+                    justify-content: center;
+                    color: #fff;
+                    text-align: center;
+                    white-space: nowrap;
+                    background-color: #35509a;
+                    transition: width 0.6s ease;
+                    height: 100%; /* Chiều cao của thanh progress-bar */
+                }
+            }
+        }
+
+        a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #35509a;
+            text-decoration: none;
+            background-color: transparent;
+        }
+    }
+}

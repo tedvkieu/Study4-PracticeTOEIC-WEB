@@ -1,0 +1,75 @@
+.sidebar-container {
+    width: 270px;
+    .pro-sidebar {
+        .pro-sidebar-inner {
+            .pro-sidebar-layout {
+                background-color: rgb(255, 255, 255);
+                .pro-sidebar-header {
+                    padding-top: 8px;
+                    background-color: #35509a;
+                    cursor: pointer;
+
+                    .title-course {
+                        color: rgb(255, 255, 255);
+                        margin-left: 20px;
+                    }
+                }
+                .pro-sidebar-content {
+                    .pro-menu {
+                        padding: 0 !important;
+
+                        .pro-menu-item {
+                            padding: 16px 0;
+                            padding-left: 20px;
+
+                            .pro-inner-item {
+                                padding: 0;
+                                .pro-item-content {
+                                    padding: 0;
+                                    font-size: 14px;
+                                    
+                                    font-weight: 500;
+                                    color: #1a1a1a;
+                                    line-height: 1.5;
+                                    font-family: Roboto, Arial, sans-serif;
+                                }
+                            }
+                        }
+                        .pro-menu-item:hover {
+                            background-color: #e8f2ff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sidebar-btn-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .sidebar-btn {
+        transition: width 0.3s;
+        width: 150px;
+        padding: 1px 5px;
+        border-radius: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        color: #adadad;
+        text-decoration: none;
+        margin: 0 auto;
+        height: 35px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        span {
+            margin-left: 25px;
+            font-size: 13px;
+        }
+        &:hover {
+            color: #dee2ec;
+        }
+    }
+}

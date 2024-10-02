@@ -1,0 +1,179 @@
+.user-container {
+    overflow: hidden;
+    .user-content {
+        width: 100%;
+        .header-sidebar {
+            display: flex;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            background-color: white;
+
+            .left-header {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                .logo-header {
+                    img {
+                        max-width: 30%;
+                    }
+                }
+            }
+            .right-header {
+                width: 50%;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                .nav-header {
+                    display: flex;
+                    align-items: center;
+                    height: 100%;
+                    gap: 20px;
+
+                    .li-1 {
+                        display: flex;
+                        align-items: center;
+                        height: 100%;
+                        font-weight: 600;
+                        font-size: 0.92rem;
+                        color: #71869d;
+
+                        a {
+                            text-transform: none;
+                            padding: 0.3rem;
+                            align-self: center;
+                            align-content: center;
+                            align-items: center;
+                            display: flex;
+                            color: #1a1a1a;
+                            border-bottom: 3px solid transparent;
+                            font-weight: 500;
+                            font-size: 0.92rem;
+                            color: #71869d;
+                            letter-spacing: -0.2px;
+                            .account-profile-img {
+                                border-radius: 50%;
+                                width: 2.5rem;
+                                height: 2.5rem;
+                                margin-right: 10px;
+                                display: inline-flex;
+                                img {
+                                    display: block;
+                                    max-width: 100%;
+                                    width: 100%;
+                                    height: auto;
+                                    -o-object-fit: cover;
+                                    object-fit: cover;
+                                    pointer-events: none;
+                                    border-radius: 50px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .body-content {
+            display: flex;
+
+            .user-main {
+                width: 100%;
+                height: calc(100vh - 100px);
+                .learncourse-navigation {
+                    display: flex; // Thiết lập Flexbox cho phần tử cha
+                    border-bottom: 1px solid #e0e0e0;
+                    align-items: center; // Căn giữa theo chiều dọc
+                    padding-bottom: 10px;
+                    background-color: #f8f9fa; // Màu nền cho thanh điều hướng (tuỳ chọn)
+                    margin-top: 20px;
+
+                    .learncourse-navs-sm {
+                        display: flex;
+                        align-items: center; // Căn giữa theo chiều dọc cho các phần tử trong
+                    }
+
+                    .learncourse-navigation-links {
+                        display: flex; // Sử dụng Flexbox để sắp xếp các liên kết nằm ngang
+                        align-items: center; // Căn giữa theo chiều dọc
+                        margin: 0 10px; // Thêm margin giữa các liên kết (tuỳ chọn)
+
+                        .learncourse-navigation-link {
+                            margin-right: 15px; // Khoảng cách giữa các liên kết
+                            a {
+                                text-decoration: none; // Bỏ gạch chân
+                                color: #007bff; // Màu sắc cho liên kết
+                                &:hover {
+                                    text-decoration: underline; // Gạch chân khi hover
+                                }
+                            }
+                        }
+                    }
+
+                    .learncourse-navigation-actions {
+                        display: flex; // Sử dụng Flexbox cho các hành động
+                        align-items: center; // Căn giữa theo chiều dọc
+                    }
+
+                    .learncourse-toggle {
+                        cursor: pointer; // Thay đổi con trỏ khi hover
+                        display: flex; // Sắp xếp các biểu tượng nằm ngang
+                        align-items: center; // Căn giữa theo chiều dọc
+                        padding: 10px; // Thêm padding cho phần tử
+                        transition: background-color 0.3s; // Thêm hiệu ứng chuyển màu nền
+
+                        &:hover {
+                            background-color: rgba(
+                                0,
+                                0,
+                                0,
+                                0.1
+                            ); // Đổi màu nền khi hover
+                        }
+                    }
+                }
+
+                .learncourse-main-content {
+                    max-width: inherit;
+                    margin: 0 auto;
+                    background-size: auto;
+                    background-position: 50%;
+                    width: 100%;
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    -webkit-overflow-scrolling: touch;
+                    overflow-y: auto;
+                    flex-grow: 1;
+
+                    .content-header {
+                        padding-top: 1rem;
+                        padding-bottom: 1rem;
+                        .sm-container {
+                            padding-top: 32px;
+                            max-width: 768px;
+                            margin: 0 auto;
+                            .course-heading,
+                            .learncourse-heading {
+                                display: flex;
+                                box-sizing: border-box;
+                                font-size: 2rem;
+                                font-family: Roboto, Arial, sans-serif;
+                                margin-bottom: 0.5rem;
+                                font-weight: 700;
+                                line-height: 1.5;
+                                color: #1a1a1a;
+                            }
+                            .content-block {
+                                background-color: #fff;
+                                padding: 1rem;
+                                border-radius: 0.65rem;
+                                border: 1px solid #e0e0e0;
+                                box-shadow: 0 4px 0 0 rgba(143, 156, 173, 0.2);
+                                margin: 30px 0;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
