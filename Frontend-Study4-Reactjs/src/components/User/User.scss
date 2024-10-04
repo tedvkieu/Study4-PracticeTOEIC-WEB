@@ -1,8 +1,12 @@
+body {
+    font-family: Roboto, Arial, sans-serif !important;
+}
 .user-container {
     overflow: hidden;
     .user-content {
         width: 100%;
         .header-sidebar {
+            height: 60px;
             display: flex;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             background-color: white;
@@ -22,6 +26,8 @@
                 display: flex;
                 align-items: center;
                 gap: 10px;
+                justify-content: flex-end !important;
+                margin-right: 15px;
 
                 .nav-header {
                     display: flex;
@@ -33,9 +39,11 @@
                         display: flex;
                         align-items: center;
                         height: 100%;
-                        font-weight: 600;
-                        font-size: 0.92rem;
-                        color: #71869d;
+                        font-weight:600;
+                        font-size: 13.8px;
+                        color: #72879e;
+                        letter-spacing: -0.2px;
+                        font-style: bold;
 
                         a {
                             text-transform: none;
@@ -99,8 +107,9 @@
                         .learncourse-navigation-link {
                             margin-right: 15px; // Khoảng cách giữa các liên kết
                             a {
+                                font-size:13px;
                                 text-decoration: none; // Bỏ gạch chân
-                                color: #007bff; // Màu sắc cho liên kết
+                                color: #080808; // Màu sắc cho liên kết
                                 &:hover {
                                     text-decoration: underline; // Gạch chân khi hover
                                 }

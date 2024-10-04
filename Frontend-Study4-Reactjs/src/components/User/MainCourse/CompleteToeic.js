@@ -25,6 +25,9 @@ const CompleteToeic = (props) => {
     ]);
     return (
         <>
+            <h1 class="font-600 learncourse-heading" id="complete-toeic">
+                Complete TOEIC
+            </h1>
             <div className="content-block">
                 <div className="main-course">
                     <div className="sp-item-title">
@@ -59,7 +62,7 @@ const CompleteToeic = (props) => {
                 </div>
             </div>
 
-            <h3 className="mt-2">Danh sách bài học: </h3>
+            <h3 className="mt-3 heading-lesson">Danh sách bài học: </h3>
             {lessons.map((lesson, index) => (
                 <div className="learncourse-unit" key={index}>
                     <div className="card-header">

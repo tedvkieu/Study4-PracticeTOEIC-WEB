@@ -58,11 +58,7 @@ const User = (props) => {
                             <div className="learncourse-main-content">
                                 <div class="content-header">
                                     <div class="sm-container">
-                                        <h1
-                                            class="font-600 learncourse-heading"
-                                            id="complete-toeic">
-                                            Complete TOEIC
-                                        </h1>
+                                        
                                         <div className="main-block">
                                             <Outlet />
                                         </div>

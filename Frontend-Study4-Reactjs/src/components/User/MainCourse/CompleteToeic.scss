@@ -1,7 +1,18 @@
+body {
+    font-family: Roboto, Arial, sans-serif !important;
+}
+
+#complete-toeic,
+.heading-lesson {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: #35509a;
+}
 .main-course {
     .sp-item-title {
         font-weight: 600;
         font-size: 1.2rem;
+
         .float-right {
             float: right !important;
         }
