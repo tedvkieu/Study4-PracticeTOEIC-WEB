@@ -16,6 +16,7 @@ import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 import Questions from './components/Admin/Content/Question/Questions';
 import VocabularyList from './components/User/Vocabulary/VocabularyList';
 import CompleteToeic from './components/User/MainCourse/CompleteToeic';
+import SlideFlashcard from './components/User/Vocabulary/SlideFlashcard';
 
 const NotFound = () => {
     return (
@@ -40,11 +41,14 @@ const Layout = (props) => {
                     <Route path="manage-quizzes" element={<ManageQuiz />} />
                     <Route path="manage-questions" element={<Questions />} />
                 </Route>
-                <Route path="user/complete-toeic" element={<User />}>
+                <Route path="/complete-toeic" element={<User />}>
                     <Route path="learn" element={<CompleteToeic />} />
                     <Route
                         path="vocabulary-list"
-                        element={<VocabularyList />}
+                        element={<VocabularyList />}></Route>
+                    <Route
+                        path="vocabulary-list/word/:id"
+                        element={<SlideFlashcard />}
                     />
                 </Route>
 

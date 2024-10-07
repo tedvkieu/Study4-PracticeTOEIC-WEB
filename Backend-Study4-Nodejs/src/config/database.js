@@ -1,5 +1,5 @@
 require('dotenv').config();
-const mysql = require('mysql2');
+const mysql = require('mysql2/promise');
 const mongoose = require('mongoose');
 
 const connection = mysql.createPool({
@@ -13,26 +13,15 @@ const connection = mysql.createPool({
     queueLimit: 0,
 });
 
-// const dbState = [
-//     { value: 0, label: 'disconnected' },
-//     { value: 1, label: 'connected' },
-//     { value: 2, label: 'connecting' },
-//     { value: 3, label: 'disconnecting' },
-// ];
-
-// const connection = async () => {
-//     try {
-//         const options = {
-//             user: process.env.DB_USER,
-//             pass: process.env.DB_PASSWORD,
-//         };
-//         console.log('>> check: ');
-//         await mongoose.connect(process.env.DB_HOST);
-//         const state = Number(mongoose.connection.readyState);
-//         console.log(dbState.find((f) => f.value === state).label, 'to db'); // connected to db
-//     } catch (error) {
-//         console.log('error connection: ', error);
-//     }
-// };
+// Kiểm tra kết nối
+connection
+    .getConnection()
+    .then((conn) => {
+        console.log('Kết nối MySQL thành công!');
+        conn.release(); // Đảm bảo trả lại kết nối sau khi kiểm tra
+    })
+    .catch((err) => {
+        console.error('Kết nối MySQL thất bại:', err);
+    });
 
 module.exports = connection;

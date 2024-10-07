@@ -71,8 +71,14 @@ const getAllQuizForAdmin = () => {
     return axios.get(`/api/v1/quiz/all`);
 };
 
-const getHello = () => {
-    return axios.get(`/hello`);
+const getAllListVoc = () => {
+    return axios.get(`/api/get-all-list-voc`);
+};
+
+const handleGetAListWord = async (id) => {
+    let res = await axios.get(`/api/get-a-list-voc?list_id=${id}`);
+ 
+    return res.data;
 };
 
 export {
@@ -88,5 +94,6 @@ export {
     postSubmitQuiz,
     postCreateNewQuiz,
     getAllQuizForAdmin,
-    getHello,
+    getAllListVoc,
+    handleGetAListWord,
 };

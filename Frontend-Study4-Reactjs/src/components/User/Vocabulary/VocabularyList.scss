@@ -1,0 +1,98 @@
+.content-block {
+    .card-header {
+        .course-heading,
+        .learncourse-heading {
+            font-size: 1.1rem !important;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+    }
+    .learncourse-unit-lesson-content {
+        padding: 0.75rem 1rem;
+        display: block;
+        color: #1a1a1a;
+        a {
+            color: #1a1a1a;
+            text-decoration: none;
+            background-color: transparent;
+        }
+        .learncourse-unit-lesson-activity {
+            padding: 12px;
+            .learncourse-activity-title {
+                display: flex;
+                flex-direction: row;
+                align-items: start;
+                line-height: 20px;
+
+                .learncourse-activity-icon {
+                    margin-right: 10px;
+                    border: 1px solid;
+                    border-radius: 100%;
+                    width: 20px;
+                    height: 20px;
+                    text-align: center;
+                    font-size: 10px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    display: inline-flex !important;
+                    color: #363b42;
+                }
+                .completed {
+                    background-color: #3cb46e;
+                    color: #fff;
+                    border-color: #3cb46e;
+                }
+            }
+            .learncourse-activity-title-content {
+                margin-left: 15px;
+            }
+        }
+        .learncourse-unit-lesson-activity:hover {
+            background-color: #f3f3f3;
+        }
+    }
+    .card-body {
+        position: relative;
+        flex: 1 1 auto;
+        min-height: 1px;
+
+        .learncourse-progressbar {
+            .progress-percent {
+                font-size: 0.9rem;
+                font-weight: 600;
+            }
+            .progress {
+                height: 10px;
+                border-radius: 5px;
+                background-color: #eee;
+                line-height: 0;
+                font-size: 0.75rem;
+
+                .progress-bar {
+                    background-color: #3cb46e !important;
+                    flex-direction: column;
+                    justify-content: center;
+                    color: #fff;
+                    text-align: center;
+                    white-space: nowrap;
+                    background-color: #35509a;
+                    transition: width 0.6s ease;
+                    height: 100%; /* Chiều cao của thanh progress-bar */
+                }
+            }
+        }
+
+        a {
+            font-size: 14px;
+            font-weight: 600;
+            color: #35509a;
+            text-decoration: none;
+            background-color: transparent;
+        }
+    }
+}
+

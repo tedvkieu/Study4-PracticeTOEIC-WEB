@@ -31,7 +31,7 @@ const Question = (props) => {
                                 <div
                                     key={`answer-${index}`}
                                     className="a-child">
-                                    <div class="form-check">
+                                    <div className="form-check">
                                         <input
                                             className="form-check-input"
                                             type="checkbox"

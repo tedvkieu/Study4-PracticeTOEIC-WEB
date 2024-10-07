@@ -51,34 +51,34 @@ const ModalViewUser = (props) => {
                     <Modal.Title>View a User</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div class="container mt-5">
-                        <div class="row d-flex justify-content-center">
-                            <div class="col-md-7">
-                                <div class="card p-3 py-4">
-                                    <div class="text-center">
+                    <div className="container mt-5">
+                        <div className="row d-flex justify-content-center">
+                            <div className="col-md-7">
+                                <div className="card p-3 py-4">
+                                    <div className="text-center">
                                         {previewImg ? (
                                             <img
                                                 src={previewImg}
                                                 width="100"
-                                                class="rounded-circle"
+                                                className="rounded-circle"
                                             />
                                         ) : (
                                             <span> Preview Image</span>
                                         )}
                                     </div>
 
-                                    <div class="text-center mt-3">
-                                        <span class="bg-secondary p-1 px-4 rounded text-white">
+                                    <div className="text-center mt-3">
+                                        <span className="bg-secondary p-1 px-4 rounded text-white">
                                             {role}
                                         </span>
-                                        <h5 class="mt-2 mb-0">{username}</h5>
-                                        <div class="px-4 mt-1">
+                                        <h5 className="mt-2 mb-0">{username}</h5>
+                                        <div className="px-4 mt-1">
                                             <span>{email}</span>
                                         </div>
                                         <span>UI/UX Designer</span>
 
-                                        <div class="px-4 mt-1">
-                                            <p class="fonts">
+                                        <div className="px-4 mt-1">
+                                            <p className="fonts">
                                                 Consectetur adipiscing elit, sed
                                                 do eiusmod tempor incididunt ut
                                                 labore et dolore magna aliqua.
@@ -89,29 +89,29 @@ const ModalViewUser = (props) => {
                                             </p>
                                         </div>
 
-                                        <ul class="social-list">
+                                        <ul className="social-list">
                                             <li>
-                                                <i class="fa fa-facebook"></i>
+                                                <i className="fa fa-facebook"></i>
                                             </li>
                                             <li>
-                                                <i class="fa fa-dribbble"></i>
+                                                <i className="fa fa-dribbble"></i>
                                             </li>
                                             <li>
-                                                <i class="fa fa-instagram"></i>
+                                                <i className="fa fa-instagram"></i>
                                             </li>
                                             <li>
-                                                <i class="fa fa-linkedin"></i>
+                                                <i className="fa fa-linkedin"></i>
                                             </li>
                                             <li>
-                                                <i class="fa fa-google"></i>
+                                                <i className="fa fa-google"></i>
                                             </li>
                                         </ul>
 
-                                        <div class="buttons">
-                                            <button class="btn btn-outline-primary px-4">
+                                        <div className="buttons">
+                                            <button className="btn btn-outline-primary px-4">
                                                 Message
                                             </button>
-                                            <button class="btn btn-primary px-4 ms-3">
+                                            <button className="btn btn-primary px-4 ms-3">
                                                 Contact
                                             </button>
                                         </div>

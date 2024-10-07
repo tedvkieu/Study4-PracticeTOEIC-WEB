@@ -64,7 +64,7 @@ const SideBarUser = (props) => {
                             className="title-course"
                             onClick={() =>
                                 navigate(
-                                    '/user/complete-toeic/learn'
+                                    '/complete-toeic/learn'
                                 )
                             }>
                             COMPLETE TOEIC
@@ -96,7 +96,7 @@ const SideBarUser = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem>
                             Từ Vựng TOEIC
-                            <Link to="/user/complete-toeic/vocabulary-list" />
+                            <Link to="/complete-toeic/vocabulary-list" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">

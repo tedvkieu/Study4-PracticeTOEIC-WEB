@@ -21,16 +21,10 @@ import { DiReact } from 'react-icons/di';
 import { Link, useNavigate } from 'react-router-dom';
 import sidebarBg from '../../assets/bg2.jpg';
 import './SideBar.scss';
-import { getHello } from '../../services/apiServices';
 
 const SideBar = (props) => {
     const navigate = useNavigate();
     const { image, collapsed, toggled, handleToggleSidebar } = props;
-
-    const handleClickHello = () => {
-        let res = getHello();
-        console.log('hello: ', res);
-    };
 
     return (
         <>
@@ -80,7 +74,7 @@ const SideBar = (props) => {
                                 <Link to="/admin/manage-questions" />
                             </MenuItem>
 
-                            <MenuItem onClick={handleClickHello}>
+                            <MenuItem>
                                 {' '}
                                 Quan Ly Cau Hoi
                                 <Link to="#" />

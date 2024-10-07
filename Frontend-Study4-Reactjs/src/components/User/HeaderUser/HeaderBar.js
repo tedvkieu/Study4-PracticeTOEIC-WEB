@@ -18,8 +18,8 @@ const HeaderBar = (props) => {
                     <div className="li-1">Blog</div>
                     <div className="li-1">Kích hoạt tài khoản</div>
                     <div className="li-1">
-                        <a class="nav-link dropdown-toggle user-topnav-profile" href="/my-account/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="account-profile-img">
+                        <a className="nav-link dropdown-toggle user-topnav-profile" href="/my-account/" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span className="account-profile-img">
                                 <img src="https://res.cloudinary.com/sandodep8/image/upload/w_300/sandodep8_x_136222279583670440204288678618639215437_cay3hh" alt="tedvkieu"/>
                                 
                             </span>

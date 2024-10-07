@@ -4,6 +4,8 @@ const {
     getUserByID,
     updateUserById,
     deleteUserById,
+    handleGetList,
+    handleGetAListVoc,
 } = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
@@ -67,6 +69,21 @@ const postHandleRemoveUser = async (req, res) => {
     res.redirect('/');
 };
 
+const getAllListVoc = async (req, res) => {
+    let listVoc = await handleGetList();
+    console.log('>>>check list Voc = ', listVoc);
+    res.send(listVoc);
+};
+
+const getAListVocabulary = async (req, res) => {
+    const { list_id } = req.query;
+    let list = await handleGetAListVoc(list_id);
+
+    console.log("chekc list: ", list)
+
+    res.send(list)
+}
+
 module.exports = {
     getHomePage,
     getHelloWorld,
@@ -76,4 +93,6 @@ module.exports = {
     getCreatePage,
     getUpdatePage,
     postHandleRemoveUser,
+    getAllListVoc,
+    getAListVocabulary,
 };

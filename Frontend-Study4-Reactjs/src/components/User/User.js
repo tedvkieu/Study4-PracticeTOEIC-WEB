@@ -24,31 +24,31 @@ const User = (props) => {
                     </div>
 
                     <div className="user-main">
-                        <div class="learncourse-navigation">
+                        <div className="learncourse-navigation">
                             <div
-                                class="learncourse-navigation-links"
+                                className="learncourse-navigation-links"
                                 id="learncourse-navigation-links">
-                                <div class="learncourse-navigation-link">
+                                <div className="learncourse-navigation-link">
                                     <a href="/courses/28/complete-toeic/learn/">
                                         Complete TOEIC
                                     </a>
                                 </div>
 
-                                <div class="learncourse-navigation-link">
-                                    <span class="far fa-chevron-right mr-2 ml-2"></span>
+                                <div className="learncourse-navigation-link">
+                                    <span className="far fa-chevron-right mr-2 ml-2"></span>
                                     <a href="/courses/28/complete-toeic/learn/units/186/">
                                         Từ vựng TOEIC
                                     </a>
                                 </div>
                             </div>
 
-                            <div class="learncourse-navigation-actions">
-                                <div class="learncourse-right-actions ml-1">
+                            <div className="learncourse-navigation-actions">
+                                <div className="learncourse-right-actions ml-1">
                                     <span
-                                        class="learncourse-toggle jqtoggle"
+                                        className="learncourse-toggle jqtoggle"
                                         data-target="#learncourse-wrapper"
-                                        data-toggle-class="is-right-toggled">
-                                        <span class="fal fa-book-open"></span>
+                                        data-toggle-classname="is-right-toggled">
+                                        <span className="fal fa-book-open"></span>
                                     </span>
                                 </div>
                             </div>
@@ -56,9 +56,8 @@ const User = (props) => {
 
                         <PerfectScrollbar>
                             <div className="learncourse-main-content">
-                                <div class="content-header">
-                                    <div class="sm-container">
-                                        
+                                <div className="content-header">
+                                    <div className="sm-container">
                                         <div className="main-block">
                                             <Outlet />
                                         </div>

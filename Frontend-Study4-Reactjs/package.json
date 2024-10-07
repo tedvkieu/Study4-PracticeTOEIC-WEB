@@ -22,6 +22,7 @@
     "react-scripts": "5.0.1",
     "react-select": "5.4.0",
     "react-toastify": "9.0.7",
+    "react-use-audio-player": "^2.2.0",
     "redux": "4.2.0",
     "redux-devtools-extension": "2.13.9",
     "redux-persist": "6.0.0",
