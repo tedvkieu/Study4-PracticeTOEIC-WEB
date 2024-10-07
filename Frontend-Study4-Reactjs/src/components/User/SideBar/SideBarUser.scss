@@ -3,8 +3,11 @@ body {
 }
 .sidebar-container {
     width: 270px;
+    height: 676px;
     .pro-sidebar {
+        height: 100% !important;
         .pro-sidebar-inner {
+            height: 100%;
             .pro-sidebar-layout {
                 background-color: rgb(255, 255, 255);
                 .pro-sidebar-header {
@@ -18,6 +21,7 @@ body {
                     }
                 }
                 .pro-sidebar-content {
+                    height: 100%;
                     .pro-menu {
                         padding: 0 !important;
 

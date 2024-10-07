@@ -41,7 +41,7 @@ const handleGetAListVoc = async (list_id) => {
     try {
         let [results, fields] = await connection.query(
             'SELECT f.*, l.* FROM flashcard f JOIN listvoc l ON f.list_id = l.list_id WHERE f.list_id = ?',
-            [list_id] // Sử dụng prepared statement để tránh SQL injection
+            [list_id] 
         );
 
         if (results.length === 0) {

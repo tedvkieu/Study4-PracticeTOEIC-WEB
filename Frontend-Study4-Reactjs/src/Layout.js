@@ -50,6 +50,10 @@ const Layout = (props) => {
                         path="vocabulary-list/word/:id"
                         element={<SlideFlashcard />}
                     />
+                    <Route
+                        path="vocabulary-list/practice/multiple-choice/:id"
+                        element={<SlideFlashcard />}
+                    />
                 </Route>
 
                 <Route path="/login" element={<Login />} />

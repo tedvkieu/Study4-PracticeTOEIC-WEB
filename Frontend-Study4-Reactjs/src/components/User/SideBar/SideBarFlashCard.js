@@ -24,10 +24,9 @@ import { DiReact } from 'react-icons/di';
 import { Link, useNavigate } from 'react-router-dom';
 import './SideBarUser.scss';
 
-const SideBarUser = (props) => {
+const SideBarFlashCard = (props) => {
     const navigate = useNavigate();
     const { collapsed, setCollapsed, toggled, handleToggleSidebar } = props;
- 
 
     const handleClickToggle = () => {
         setCollapsed((prev) => {
@@ -92,85 +91,13 @@ const SideBarUser = (props) => {
                 <SidebarContent>
                     <Menu iconShape="circle">
                         <MenuItem>
-                            Từ Vựng TOEIC
+                            List 1
                             <Link to="/complete-toeic/vocabulary-list" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <MenuItem>
-                            Ngữ Pháp TOEIC
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 1: Photographs: Nghe Tranh
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 2: Question - Response - Hỏi - đáp
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 3: Conversations - Nghe hiểu đối thoại
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 4: Talks - Nghe hiểu bài nói
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 5: Incomplete Sentences - Điền từ vào câu
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 6: Text Completion - Điền từ vào đoạn văn
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    {/* <Menu iconShape="circle">
-                        <SubMenu icon={<FaGem />} title="Features">
-                            <MenuItem>
-                                Quan Ly Users
-                                <Link to="/admin/manage-user" />
-                            </MenuItem>
-                            <MenuItem>
-                                Quan Ly Bai Quiz
-                                <Link to="/admin/manage-quizzes" />
-                            </MenuItem>
-
-                            <MenuItem>
-                                {' '}
-                                Quan Ly Cau Hoi
-                                <Link to="/admin/manage-questions" />
-                            </MenuItem>
-
-                            <MenuItem>
-                                {' '}
-                                Quan Ly Cau Hoi
-                                <Link to="#" />
-                            </MenuItem>
-                        </SubMenu>
-                    </Menu> */}
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Part 7: Reading Comprehension - Đọc hiểu văn bản
-                            <Link to="/admin" />
-                        </MenuItem>
-                    </Menu>
-                    <Menu iconShape="circle">
-                        <MenuItem>
-                            Gia hạn khóa học
+                            List 2
                             <Link to="/admin" />
                         </MenuItem>
                     </Menu>
@@ -204,4 +131,4 @@ const SideBarUser = (props) => {
     );
 };
 
-export default SideBarUser;
+export default SideBarFlashCard;

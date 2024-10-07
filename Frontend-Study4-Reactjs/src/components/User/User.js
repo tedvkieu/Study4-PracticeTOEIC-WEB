@@ -2,12 +2,34 @@ import HeaderBar from './HeaderUser/HeaderBar';
 import './User.scss';
 import { FaBars } from 'react-icons/fa';
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import SideBarUser from './SideBar/SideBarUser';
+import SideBarFlashCard from './SideBar/SideBarFlashCard';
+import Breadcrumb from './Breadcrumb/Breadcrumb';
 
 const User = (props) => {
     const [collapsed, setCollapsed] = useState(true);
+    const location = useLocation();
+    const isVocabularyList = location.pathname.includes('word');
+
+    let breadcrumbItems = [];
+    if (location.pathname === '/complete-toeic/learn') {
+        breadcrumbItems = [
+            { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
+        ];
+    } else if (location.pathname === '/complete-toeic/vocabulary-list') {
+        breadcrumbItems = [
+            { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
+            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary-list' },
+        ];
+    } else if (location.pathname.includes('/complete-toeic/vocabulary-list/')) {
+        breadcrumbItems = [
+            { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
+            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary-list' },
+            { label: 'List 1', path: '/complete-toeic/vocabulary-list/word/1' }, // Cập nhật theo id hoặc tên danh sách
+        ];
+    }
     return (
         <div className="user-container">
             <div className="user-content">
@@ -17,41 +39,22 @@ const User = (props) => {
 
                 <div className="body-content">
                     <div className="sidebar-container">
-                        <SideBarUser
-                            collapsed={!collapsed}
-                            setCollapsed={setCollapsed}
-                        />
+                        {isVocabularyList ? (
+                            <SideBarFlashCard
+                                collapsed={!collapsed}
+                                setCollapsed={setCollapsed}
+                            />
+                        ) : (
+                            <SideBarUser
+                                collapsed={!collapsed}
+                                setCollapsed={setCollapsed}
+                            />
+                        )}
                     </div>
 
                     <div className="user-main">
                         <div className="learncourse-navigation">
-                            <div
-                                className="learncourse-navigation-links"
-                                id="learncourse-navigation-links">
-                                <div className="learncourse-navigation-link">
-                                    <a href="/courses/28/complete-toeic/learn/">
-                                        Complete TOEIC
-                                    </a>
-                                </div>
-
-                                <div className="learncourse-navigation-link">
-                                    <span className="far fa-chevron-right mr-2 ml-2"></span>
-                                    <a href="/courses/28/complete-toeic/learn/units/186/">
-                                        Từ vựng TOEIC
-                                    </a>
-                                </div>
-                            </div>
-
-                            <div className="learncourse-navigation-actions">
-                                <div className="learncourse-right-actions ml-1">
-                                    <span
-                                        className="learncourse-toggle jqtoggle"
-                                        data-target="#learncourse-wrapper"
-                                        data-toggle-classname="is-right-toggled">
-                                        <span className="fal fa-book-open"></span>
-                                    </span>
-                                </div>
-                            </div>
+                            <Breadcrumb items={breadcrumbItems} />
                         </div>
 
                         <PerfectScrollbar>

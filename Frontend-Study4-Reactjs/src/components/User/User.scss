@@ -39,7 +39,7 @@ body {
                         display: flex;
                         align-items: center;
                         height: 100%;
-                        font-weight:600;
+                        font-weight: 600;
                         font-size: 13.8px;
                         color: #72879e;
                         letter-spacing: -0.2px;
@@ -90,55 +90,10 @@ body {
                     display: flex; // Thiết lập Flexbox cho phần tử cha
                     border-bottom: 1px solid #e0e0e0;
                     align-items: center; // Căn giữa theo chiều dọc
-                    padding-bottom: 10px;
+                
                     background-color: #f8f9fa; // Màu nền cho thanh điều hướng (tuỳ chọn)
-                    margin-top:10px;
-                    padding-top: 10px;
-
-                    .learncourse-navs-sm {
-                        display: flex;
-                        align-items: center; // Căn giữa theo chiều dọc cho các phần tử trong
-                    }
-
-                    .learncourse-navigation-links {
-                        display: flex; // Sử dụng Flexbox để sắp xếp các liên kết nằm ngang
-                        align-items: center; // Căn giữa theo chiều dọc
-                        margin: 0 10px; // Thêm margin giữa các liên kết (tuỳ chọn)
-
-                        .learncourse-navigation-link {
-                            margin-right: 15px; // Khoảng cách giữa các liên kết
-                            a {
-                                font-size:13px;
-                                text-decoration: none; // Bỏ gạch chân
-                                color: #080808; // Màu sắc cho liên kết
-                                &:hover {
-                                    text-decoration: underline; // Gạch chân khi hover
-                                }
-                            }
-                        }
-                    }
-
-                    .learncourse-navigation-actions {
-                        display: flex; // Sử dụng Flexbox cho các hành động
-                        align-items: center; // Căn giữa theo chiều dọc
-                    }
-
-                    .learncourse-toggle {
-                        cursor: pointer; // Thay đổi con trỏ khi hover
-                        display: flex; // Sắp xếp các biểu tượng nằm ngang
-                        align-items: center; // Căn giữa theo chiều dọc
-                        padding: 10px; // Thêm padding cho phần tử
-                        transition: background-color 0.3s; // Thêm hiệu ứng chuyển màu nền
-
-                        &:hover {
-                            background-color: rgba(
-                                0,
-                                0,
-                                0,
-                                0.1
-                            ); // Đổi màu nền khi hover
-                        }
-                    }
+                    margin-top: 10px;
+                    //padding-top: 10px;
                 }
 
                 .learncourse-main-content {

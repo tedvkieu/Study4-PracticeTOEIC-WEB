@@ -1,0 +1,22 @@
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin-left: 20px;
+    margin-top:10px;
+    .breadcrumb-item {
+        font-size: 13px;
+
+        a {
+            text-decoration: none;
+            color: blue; /* hoặc màu bạn muốn */
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .breadcrumb-item a .breadcrumb-item span {
+        color: gray;
+    }
+}
