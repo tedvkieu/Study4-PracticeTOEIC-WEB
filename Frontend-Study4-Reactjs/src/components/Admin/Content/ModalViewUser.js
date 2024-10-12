@@ -8,9 +8,9 @@ const ModalViewUser = (props) => {
     const { show, setShow, dataUpdate } = props;
 
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+
     const [username, setUsername] = useState('');
-    const [image, setImage] = useState('');
+
     const [role, setRole] = useState('USER');
     const [previewImg, setPreviewImg] = useState('');
 
@@ -24,21 +24,18 @@ const ModalViewUser = (props) => {
                 setPreviewImg(`data:image/jpeg;base64,${dataUpdate.image}`);
             }
         }
-    }, [props.dataUpdate]);
+    }, [dataUpdate]);
 
     const handleClose = () => {
         setShow(false);
         setEmail('');
-        setPassword('');
-        setImage('');
+
         setUsername('');
         setRole('USER');
         setPreviewImg('');
         props.resetUpdateData();
     };
 
-
-   
     return (
         <>
             <Modal
@@ -61,6 +58,7 @@ const ModalViewUser = (props) => {
                                                 src={previewImg}
                                                 width="100"
                                                 className="rounded-circle"
+                                                alt="no file"
                                             />
                                         ) : (
                                             <span> Preview Image</span>
@@ -71,7 +69,9 @@ const ModalViewUser = (props) => {
                                         <span className="bg-secondary p-1 px-4 rounded text-white">
                                             {role}
                                         </span>
-                                        <h5 className="mt-2 mb-0">{username}</h5>
+                                        <h5 className="mt-2 mb-0">
+                                            {username}
+                                        </h5>
                                         <div className="px-4 mt-1">
                                             <span>{email}</span>
                                         </div>

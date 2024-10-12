@@ -3,22 +3,12 @@ import {
     ProSidebar,
     Menu,
     MenuItem,
-    SubMenu,
     SidebarHeader,
     SidebarFooter,
     SidebarContent,
 } from 'react-pro-sidebar';
 
-import {
-    FaTachometerAlt,
-    FaGem,
-    FaList,
-    FaGithub,
-    FaRegLaughWink,
-    FaHeart,
-    FaCaretLeft,
-    FaCaretRight,
-} from 'react-icons/fa';
+import { FaGithub, FaCaretLeft, FaCaretRight } from 'react-icons/fa';
 
 import { DiReact } from 'react-icons/di';
 import { Link, useNavigate } from 'react-router-dom';
@@ -27,7 +17,6 @@ import './SideBarUser.scss';
 const SideBarUser = (props) => {
     const navigate = useNavigate();
     const { collapsed, setCollapsed, toggled, handleToggleSidebar } = props;
- 
 
     const handleClickToggle = () => {
         setCollapsed((prev) => {

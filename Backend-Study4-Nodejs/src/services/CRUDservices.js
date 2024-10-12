@@ -30,18 +30,20 @@ const deleteUserById = async (id) => {
 };
 
 const handleGetList = async () => {
-    let [results, fields] = await connection.query('select * from listvoc');
+    let [results, fields] = await connection.query(
+        'select * from list_vocabulary'
+    );
 
     console.log('check rs: ', results);
 
     return JSON.stringify(results);
 };
 
-const handleGetAListVoc = async (list_id) => {
+const handleGetAlistVoc = async (list_id) => {
     try {
         let [results, fields] = await connection.query(
-            'SELECT f.*, l.* FROM flashcard f JOIN listvoc l ON f.list_id = l.list_id WHERE f.list_id = ?',
-            [list_id] 
+            'SELECT f.*, l.* FROM vocabulary f JOIN list_vocabulary l ON f.list_id = l.list_id WHERE f.list_id = ?',
+            [list_id]
         );
 
         if (results.length === 0) {
@@ -65,11 +67,39 @@ const handleGetAListVoc = async (list_id) => {
     }
 };
 
+const handleGetListAnswer = async (vocabulary_id) => {
+    try {
+        console.log('chekc id: ', vocabulary_id);
+        const [results, fields] = await connection.query(
+            'SELECT * FROM practice_answer_voc WHERE vocabulary_id = ?',
+            [vocabulary_id]
+        );
+
+        console.log(results);
+
+        return results;
+    } catch (error) {
+        console.error('Error executing query:', error);
+        return 'Database query failed';
+    }
+};
+
+const handleGetListLesson = async (id) => {
+    const [results, fields] = await connection.query(
+        'SELECT * FROM lesson WHERE unit_id = ?',
+        [id]
+    );
+
+    return results;
+};
+
 module.exports = {
     getAllUsers,
     getUserByID,
     updateUserById,
     deleteUserById,
     handleGetList,
-    handleGetAListVoc,
+    handleGetAlistVoc,
+    handleGetListAnswer,
+    handleGetListLesson,
 };

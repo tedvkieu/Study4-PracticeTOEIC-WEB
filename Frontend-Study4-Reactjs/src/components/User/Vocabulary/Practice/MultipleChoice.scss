@@ -1,0 +1,116 @@
+.exercise {
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 0 solid #000;
+    overflow: visible;
+    text-align: center;
+
+    #question {
+        width: 500px;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+        margin-bottom: 40px;
+        font-size: 28px;
+        line-height: 36px;
+        font-weight: 400;
+        .questionTitle {
+            font-size: 22px;
+            margin-top: 12px;
+            margin-bottom: 12px;
+            line-height: 1.3em;
+            font-weight: 700;
+            display: block;
+        }
+        #hint {
+            font-size: 15px;
+            line-height: 1.6em;
+            margin-bottom: 25px;
+            font-weight: 300;
+            font-style: italic;
+        }
+    }
+
+    .variant {
+        font-size: 18px;
+        color: #34495e;
+        background-color: white;
+        padding: 15px;
+        border: 1px solid #dfe6e9;
+        border-radius: 15px;
+        margin-bottom: 0px;
+        margin-top: 10px;
+        display: inline-block;
+        text-align: left;
+        width: 100%;
+        cursor: pointer;
+        &:hover {
+            background-color: rgb(223, 223, 223);
+        }
+    }
+}
+
+.problem-set-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .problem-set-control-btn {
+        font-size: 0.85rem;
+        background-color: #e8f2ff;
+        color: #35509a;
+        font-weight: 600;
+        cursor: pointer;
+        padding: 5px 9px;
+        border-radius: 0.35rem;
+    }
+    .problem-set-autonext-timer {
+        .custom-switch {
+            position: relative;
+            display: flex;
+
+            height: 34px;
+            margin-right: 10px; // Khoảng cách giữa switch và label
+            .custom-control-label {
+                display: inline-block; // Đảm bảo label nằm cạnh switch
+                margin-left: 10px; // Khoảng cách giữa switch và label
+                font-size: 13px;
+                font-weight: 500;
+            }
+        }
+    }
+}
+
+.title-question {
+    font-weight: 600;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-size: 17px;
+}
+.problemset-change-problem {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .problemset-problem-number {
+        display: inline-flex;
+        min-width: 25px;
+        height: 25px;
+        border: 1px solid;
+        font-weight: 500;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0.3rem;
+        margin-right: 1rem;
+        margin-bottom: 0.5rem;
+        cursor: pointer;
+        font-size: 13px;
+        padding: 0 5px;
+    }
+    .problemset-problem-number.active,
+    .problemset-problem-number:hover {
+        background-color: #35509a;
+        color: #fff;
+        border-color: #35509a;
+    }
+}

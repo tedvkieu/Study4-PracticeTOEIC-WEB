@@ -1,7 +1,6 @@
 import './ManageUser.scss';
 import { FcPlus } from 'react-icons/fc';
 
-import TableUser from './TableUser';
 import { useEffect, useState } from 'react';
 import { getAllUsers, getUserPaginate } from '../../../services/apiServices';
 import ModelCreateUser from './ModelCreateUser';

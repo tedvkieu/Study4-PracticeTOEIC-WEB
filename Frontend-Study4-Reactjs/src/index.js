@@ -4,7 +4,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import reportWebVitals from './reportWebVitals';
 import { store, persistor } from './redux/store';
 import { Provider } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter} from 'react-router-dom';
 import Layout from './Layout';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';

@@ -1,7 +1,7 @@
 import axios from 'axios';
 //import nProgress from 'nprogress';
 import NProgress from 'nprogress';
-import { FaCloudShowersHeavy } from 'react-icons/fa';
+
 import { store } from '../redux/store';
 
 NProgress.configure({

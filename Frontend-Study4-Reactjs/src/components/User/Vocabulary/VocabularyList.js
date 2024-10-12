@@ -1,20 +1,47 @@
 import './VocabularyList.scss';
 import { useEffect, useState } from 'react';
-import { getAllListVoc } from '../../../services/apiServices';
+import {
+    getAllListVoc,
+    handleGetAllLesson,
+} from '../../../services/apiServices';
 import { RiCheckboxCircleFill } from 'react-icons/ri';
+import { FaRegCircle } from 'react-icons/fa';
+
+import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setListVoc, setListLesson } from '../../../redux/action/userAction';
 
 const VocabularyList = () => {
-    const [listVoc, setListVoc] = useState([]);
+    //const [listVoc, setListVoc] = useState([]);
+    //const [listLesson, setListLesson] = useState([]);
+    const [routeLink] = useState(['word/', 'practice/multiple-choice/']);
+    const dispatch = useDispatch();
+    const listVoc = useSelector((state) => state.user.listVoc);
+    const listLesson = useSelector((state) => state.user.listLesson);
 
     const handleGetAllListVoc = async () => {
         let res = await getAllListVoc();
+        console.log('check list voc: ', res);
 
-        setListVoc(res);
+        dispatch(setListVoc(res));
         console.log(res);
+    };
+    const getAllLesson = async () => {
+        try {
+            let res = await handleGetAllLesson(1);
+
+            console.log('chekc list lesson: ', res);
+
+            //setListLesson(res);
+            dispatch(setListLesson(res));
+        } catch (err) {
+            console.log('check err: ', err);
+        }
     };
 
     useEffect(() => {
         handleGetAllListVoc();
+        getAllLesson();
     }, []);
 
     return (
@@ -40,7 +67,7 @@ const VocabularyList = () => {
                 </div>
             </div>
 
-            {listVoc && listVoc.length > 0 ? (
+            {listVoc && listVoc.length > 0 && listLesson ? (
                 listVoc.map((item, index) => (
                     <div className="content-block" key={item.list_id}>
                         <div className="card-header">
@@ -49,148 +76,55 @@ const VocabularyList = () => {
                             </h4>
                         </div>
                         <div className="learncourse-unit-lesson-content">
-                            <a href={`/complete-toeic/vocabulary-list/word/${item.list_id}`}>
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content">
-                                            <div>
-                                                <strong>Từ vựng: </strong>
-                                                Flashcards
+                            {listLesson &&
+                                listLesson.map((lesson, index) => (
+                                    <a
+                                        key={index}
+                                        href={`/complete-toeic/vocabulary-list/${
+                                            routeLink[index % routeLink.length]
+                                        }${item.list_id}`}>
+                                        <div className="learncourse-unit-lesson-activity">
+                                            <div className="learncourse-activity-title">
+                                                <div className="learncourse-activity-icon-wrapper">
+                                                    {lesson.status_study ===
+                                                    1 ? (
+                                                        <RiCheckboxCircleFill
+                                                            style={{
+                                                                fontSize:
+                                                                    '22px',
+                                                                alignItems:
+                                                                    'center',
+                                                                justifyItems:
+                                                                    'center',
+                                                                color: '#3cb46e',
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <FaRegCircle
+                                                            style={{
+                                                                fontSize:
+                                                                    '20px',
+                                                                alignItems:
+                                                                    'center',
+                                                                justifyItems:
+                                                                    'center',
+                                                                color: '#3cb46e',
+                                                            }}
+                                                        />
+                                                    )}
+                                                </div>
+                                                <div className="learncourse-activity-title-content">
+                                                    <div>
+                                                        <strong>
+                                                            Từ vựng:{' '}
+                                                        </strong>
+                                                        {lesson.name}
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="/courses/28/complete-toeic/learn/activities/6784/">
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content">
-                                            <div>
-                                                <strong>Luyện tập: </strong>
-                                                Trắc nghiệm từ vựng
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="/courses/28/complete-toeic/learn/activities/6784/">
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content ml-1">
-                                            <div>
-                                                <strong>Luyện tập: </strong>
-                                                Tìm cặp
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="/courses/28/complete-toeic/learn/activities/6784/">
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content ml-1">
-                                            <div>
-                                                <strong>Luyện tập: </strong>
-                                                Nghe từ vựng
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <a href="/courses/28/complete-toeic/learn/activities/6784/">
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content ml-1">
-                                            <div>
-                                                <strong>Luyện tập: </strong>
-                                                Dịch Nghĩa
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-
-                            <a href="/courses/28/complete-toeic/learn/activities/6784/">
-                                <div className="learncourse-unit-lesson-activity">
-                                    <div className="learncourse-activity-title">
-                                        <div className="learncourse-activity-icon-wrapper">
-                                            <RiCheckboxCircleFill
-                                                style={{
-                                                    fontSize: '22px',
-                                                    alignItems: 'center',
-                                                    justifyItems: 'center',
-                                                    color: '#3cb46e',
-                                                }}
-                                            />
-                                            {/* <span className="learncourse-activity-icon fas fa-check completed"></span> */}
-                                        </div>
-                                        <div className="learncourse-activity-title-content ml-1">
-                                            <div>
-                                                <strong>Luyện tập: </strong>
-                                                Nghe chính tả
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                                    </a>
+                                ))}
                         </div>
                     </div>
                 ))
@@ -201,4 +135,12 @@ const VocabularyList = () => {
     );
 };
 
-export default VocabularyList;
+const mapStateToProps = (state) => {
+    return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(VocabularyList);

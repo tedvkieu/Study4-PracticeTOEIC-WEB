@@ -5,7 +5,9 @@ const {
     updateUserById,
     deleteUserById,
     handleGetList,
-    handleGetAListVoc,
+    handleGetAlistVoc,
+    handleGetListAnswer,
+    handleGetListLesson,
 } = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
@@ -77,12 +79,28 @@ const getAllListVoc = async (req, res) => {
 
 const getAListVocabulary = async (req, res) => {
     const { list_id } = req.query;
-    let list = await handleGetAListVoc(list_id);
+    let list = await handleGetAlistVoc(list_id);
 
-    console.log("chekc list: ", list)
+    console.log('chekc list: ', list);
 
-    res.send(list)
-}
+    res.send(list);
+};
+
+const getListPracticeAnswer = async (req, res) => {
+    const id = req.query.vocabulary_id;
+    console.log('chekc id1:', id);
+    let list = await handleGetListAnswer(id);
+    console.log('check result: ', list);
+
+    res.send(list);
+};
+
+const getListLesson = async (req, res) => {
+    const id = req.query;
+    let list = await handleGetListLesson(id);
+
+    res.send(list);
+};
 
 module.exports = {
     getHomePage,
@@ -95,4 +113,6 @@ module.exports = {
     postHandleRemoveUser,
     getAllListVoc,
     getAListVocabulary,
+    getListPracticeAnswer,
+    getListLesson,
 };

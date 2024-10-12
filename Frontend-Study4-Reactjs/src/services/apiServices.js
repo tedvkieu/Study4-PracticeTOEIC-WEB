@@ -77,9 +77,17 @@ const getAllListVoc = () => {
 
 const handleGetAListWord = async (id) => {
     let res = await axios.get(`/api/get-a-list-voc?list_id=${id}`);
- 
+
     return res.data;
 };
+
+const handleGetListAnswer = (id) => {
+    return axios.get(`/api/get-list-practice/answer-voc?vocabulary_id=${id}`);
+};
+
+const handleGetAllLesson = (id_unit) => {
+    return axios.get(`/api/get-all-lesson?unit_id=${id_unit}`);
+}
 
 export {
     postCreateNewUser,
@@ -96,4 +104,6 @@ export {
     getAllQuizForAdmin,
     getAllListVoc,
     handleGetAListWord,
+    handleGetListAnswer,
+    handleGetAllLesson,
 };

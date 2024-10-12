@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
-import { useAudioPlayer, useGlobalAudioPlayer } from 'react-use-audio-player';
+import { useParams } from 'react-router-dom';
+
 import './SlideFlashcard.scss';
 import { handleGetAListWord } from '../../../services/apiServices';
 import { ImVolumeHigh } from 'react-icons/im';
@@ -13,6 +13,7 @@ const SlideFlashcard = () => {
     const [listWord, setListWord] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [currentWord, setCurrentWord] = useState({});
+   const [statusStudy, setStatusStudy] = useState(false);
 
     const params = useParams();
     const wordId = params.id;
@@ -23,6 +24,7 @@ const SlideFlashcard = () => {
         setCurrentIndex((prevIndex) => {
             const newIndex =
                 prevIndex < listWord.length - 1 ? prevIndex + 1 : 0;
+            console.log('checck index: ', newIndex);
             setCurrentWord(listWord[newIndex]); // Sử dụng giá trị mới cập nhật
             return newIndex;
         });
@@ -46,11 +48,20 @@ const SlideFlashcard = () => {
     };
 
     const getAllListWord = async () => {
-        let res = await handleGetAListWord(wordId);
-        console.log(res);
-        setListWord(res);
+        try {
+            const res = await handleGetAListWord(wordId); // Giả sử bạn lấy dữ liệu từ API
+            console.log('Dữ liệu từ API: ', res);
 
-        setCurrentWord(res[0]);
+            // Kiểm tra xem res có tồn tại và là mảng không
+            if (Array.isArray(res) && res.length > 0) {
+                setListWord(res); // Thiết lập state nếu res là mảng và có ít nhất một phần tử
+                setCurrentWord(res[0]);
+            } else {
+                console.log('Không có từ vựng nào được trả về.');
+            }
+        } catch (error) {
+            console.error('Lỗi khi lấy từ vựng: ', error);
+        }
     };
 
     useEffect(() => {
@@ -59,6 +70,9 @@ const SlideFlashcard = () => {
 
     return (
         <div className="flashcards-container">
+            <div className="completion-bar">
+                <span>Hoàn thành bài học!</span>
+            </div>
             <div
                 className={`content-block-wrapper ${
                     flashCardState ? 'flipped' : ''

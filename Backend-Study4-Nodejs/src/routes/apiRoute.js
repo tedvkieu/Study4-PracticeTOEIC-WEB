@@ -4,6 +4,8 @@ const { authController } = require('../controllers/authController');
 const {
     getAllListVoc,
     getAListVocabulary,
+    getListPracticeAnswer,
+    getListLesson,
 } = require('../controllers/homeController');
 
 router.post('/auth/login', authController.login);
@@ -11,5 +13,9 @@ router.post('/auth/login', authController.login);
 router.get('/api/get-all-list-voc', getAllListVoc);
 
 router.get('/api/get-a-list-voc', getAListVocabulary);
+
+router.get('/api/get-list-practice/answer-voc', getListPracticeAnswer);
+
+router.get('/api/get-all-lesson', getListLesson);
 
 module.exports = router;

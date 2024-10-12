@@ -1,5 +1,9 @@
-import { INCREMENT, DECREMENT } from '../action/counterAction';
-import { FETCH_USER_LOGIN_SUCCESS } from '../action/userAction';
+import { DECREMENT } from '../action/counterAction';
+import {
+    FETCH_USER_LOGIN_SUCCESS,
+    SET_LIST_VOC,
+    SET_LIST_LESSON,
+} from '../action/userAction';
 const INITIAL_STATE = {
     account: {
         access_token: '',
@@ -9,6 +13,8 @@ const INITIAL_STATE = {
         role: '',
     },
     isAuthenticated: false,
+    listVoc: [],
+    listLesson: [],
 };
 const userReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -30,6 +36,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 count: state.count - 1,
+            };
+        case SET_LIST_VOC:
+            return {
+                ...state,
+                listVoc: action.payload,
+            };
+        case SET_LIST_LESSON:
+            return {
+                ...state,
+                listLesson: action.payload,
             };
         default:
             return state;

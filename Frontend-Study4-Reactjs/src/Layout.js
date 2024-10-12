@@ -17,6 +17,7 @@ import Questions from './components/Admin/Content/Question/Questions';
 import VocabularyList from './components/User/Vocabulary/VocabularyList';
 import CompleteToeic from './components/User/MainCourse/CompleteToeic';
 import SlideFlashcard from './components/User/Vocabulary/SlideFlashcard';
+import MultipleChoice from './components/User/Vocabulary/Practice/MultipleChoice';
 
 const NotFound = () => {
     return (
@@ -52,7 +53,7 @@ const Layout = (props) => {
                     />
                     <Route
                         path="vocabulary-list/practice/multiple-choice/:id"
-                        element={<SlideFlashcard />}
+                        element={<MultipleChoice />}
                     />
                 </Route>
 
