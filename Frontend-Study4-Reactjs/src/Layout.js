@@ -16,8 +16,9 @@ import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 import Questions from './components/Admin/Content/Question/Questions';
 import VocabularyList from './components/User/Vocabulary/VocabularyList';
 import CompleteToeic from './components/User/MainCourse/CompleteToeic';
-import SlideFlashcard from './components/User/Vocabulary/SlideFlashcard';
-import MultipleChoice from './components/User/Vocabulary/Practice/MultipleChoice';
+import SlideFlashcard from './components/User/Vocabulary/Lesson/SlideFlashcard';
+import MultipleChoice from './components/User/Vocabulary/Lesson/MultipleChoice';
+import ManageLessonVocabulary from './components/User/Vocabulary/ManageLessonVocabulary';
 
 const NotFound = () => {
     return (
@@ -45,16 +46,14 @@ const Layout = (props) => {
                 <Route path="/complete-toeic" element={<User />}>
                     <Route path="learn" element={<CompleteToeic />} />
                     <Route
-                        path="vocabulary-list"
+                        path="vocabulary"
                         element={<VocabularyList />}></Route>
                     <Route
-                        path="vocabulary-list/word/:id"
-                        element={<SlideFlashcard />}
+                        path="vocabulary/list/:list_id/lesson/:lesson_id"
+                        element={<ManageLessonVocabulary />}
                     />
-                    <Route
-                        path="vocabulary-list/practice/multiple-choice/:id"
-                        element={<MultipleChoice />}
-                    />
+
+        
                 </Route>
 
                 <Route path="/login" element={<Login />} />

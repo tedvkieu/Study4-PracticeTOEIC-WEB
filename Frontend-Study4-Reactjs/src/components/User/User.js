@@ -18,16 +18,16 @@ const User = (props) => {
         breadcrumbItems = [
             { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
         ];
-    } else if (location.pathname === '/complete-toeic/vocabulary-list') {
+    } else if (location.pathname === '/complete-toeic/vocabulary') {
         breadcrumbItems = [
             { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
-            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary-list' },
+            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary' },
         ];
-    } else if (location.pathname.includes('/complete-toeic/vocabulary-list/')) {
+    } else if (location.pathname.includes('/complete-toeic/vocabulary/list')) {
         breadcrumbItems = [
             { label: 'Complete TOEIC', path: '/complete-toeic/learn' },
-            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary-list' },
-            { label: 'List 1', path: '/complete-toeic/vocabulary-list/word/1' }, // Cập nhật theo id hoặc tên danh sách
+            { label: 'Từ vựng TOEIC', path: '/complete-toeic/vocabulary' },
+            { label: 'List 1', path: '/complete-toeic/vocabulary/list/1' }, // Cập nhật theo id hoặc tên danh sách
         ];
     }
     return (

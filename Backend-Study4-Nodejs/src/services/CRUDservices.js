@@ -93,6 +93,19 @@ const handleGetListLesson = async (id) => {
     return results;
 };
 
+const handleChangeStatusStudy = async (id) => {
+    try {
+        await connection.query(
+            'Update lesson set status_study = 1 WHERE lesson_id = ?',
+            [id]
+        );
+
+        return 'Update Success';
+    } catch (e) {
+        return 'Failed Update';
+    }
+};
+
 module.exports = {
     getAllUsers,
     getUserByID,
@@ -102,4 +115,5 @@ module.exports = {
     handleGetAlistVoc,
     handleGetListAnswer,
     handleGetListLesson,
+    handleChangeStatusStudy,
 };

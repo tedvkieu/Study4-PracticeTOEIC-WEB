@@ -3,28 +3,26 @@ import './MultipleChoice.scss';
 import Switch from 'react-js-switch';
 import { GrFormNext, GrFormPrevious } from 'react-icons/gr';
 import {
-    handleGetAListWord,
+    handleChangeStatusStudy,
+    handleGetAllLesson,
     handleGetListAnswer,
 } from '../../../../services/apiServices';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-const MultipleChoice = () => {
-    const [listWord, setListWord] = useState([]);
+const MultipleChoice = (props) => {
+    const { listWord, lesson, getAllListLesson } = props;
     const [listAnswer, setListAnswer] = useState([]);
     const [currentWord, setCurrentWord] = useState({});
     const [isSwitchOn, setIsSwitchOn] = useState(true);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [autoNextQuestion, setAutoNextQuestion] = useState(true);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [statusStudy, setStatusStudy] = useState(true);
 
-    const params = useParams();
-    const wordId = params.id;
-    //const audioRef = useRef(null);
+    const navigate = useNavigate();
 
     const switch_onChange_handle = () => {
         setIsSwitchOn(!isSwitchOn);
-        setAutoNextQuestion(!autoNextQuestion);
-        //...
     };
     const handleClick = (index, isCorrect) => {
         setSelectedIndex(index);
@@ -35,13 +33,6 @@ const MultipleChoice = () => {
         }
     };
 
-    const getAllListWord = async () => {
-        let res = await handleGetAListWord(wordId);
-        console.log('check list word', res[0]);
-        setListWord(res);
-
-        setCurrentWord(res[0]);
-    };
     const serviceGetListAnswer = async () => {
         let res = await handleGetListAnswer(currentWord.vocabulary_id);
         console.log('check answer: ', res);
@@ -61,12 +52,11 @@ const MultipleChoice = () => {
     };
     const handlePreviousWord = () => {
         setCurrentIndex((prevIndex) => {
-            const newIndex =
-                prevIndex > 0 ? prevIndex - 1 : 0;
+            const newIndex = prevIndex > 0 ? prevIndex - 1 : 0;
             setCurrentWord(listWord[newIndex]);
             return newIndex;
         });
-        setSelectedIndex(null); // Đặt lại selectedIndex khi chuyển sang từ mới
+        setSelectedIndex(null);
     };
 
     const handleClickCurrentQuestion = (id) => {
@@ -74,6 +64,21 @@ const MultipleChoice = () => {
         setCurrentWord(listWord[id]);
         setSelectedIndex(null);
     };
+
+    const changeStatusStudy = async () => {
+        let res = await handleChangeStatusStudy(lesson.lesson_id);
+
+        if (res.EC === 0) {
+            getAllListLesson();
+            navigate(-1);
+        }
+    };
+
+    useEffect(() => {
+        if (listWord.length > 0) {
+            setCurrentWord(listWord[0]);
+        }
+    }, [listWord]);
     useEffect(() => {
         if (currentWord) {
             serviceGetListAnswer();
@@ -81,11 +86,21 @@ const MultipleChoice = () => {
     }, [currentWord]);
 
     useEffect(() => {
-        getAllListWord();
-        serviceGetListAnswer();
-    }, []);
+        if (lesson) {
+            setStatusStudy(lesson.status_study);
+            console.log('check status: ', lesson.status_study);
+        }
+    }, [lesson]);
+
     return (
         <>
+            {statusStudy === 0 ? (
+                <div className="completion-bar" onClick={changeStatusStudy}>
+                    <span>Hoàn thành bài học!</span>
+                </div>
+            ) : (
+                <></>
+            )}
             <div className="content-block">
                 <div className="exercise" id="exercise">
                     <div id="playGround">

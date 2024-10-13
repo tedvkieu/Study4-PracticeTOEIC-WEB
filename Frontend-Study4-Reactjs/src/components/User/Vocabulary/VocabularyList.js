@@ -10,12 +10,14 @@ import { FaRegCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { setListVoc, setListLesson } from '../../../redux/action/userAction';
+import { useLocation } from 'react-router-dom';
 
 const VocabularyList = () => {
     //const [listVoc, setListVoc] = useState([]);
     //const [listLesson, setListLesson] = useState([]);
     const [routeLink] = useState(['word/', 'practice/multiple-choice/']);
     const dispatch = useDispatch();
+    const location = useLocation();
     const listVoc = useSelector((state) => state.user.listVoc);
     const listLesson = useSelector((state) => state.user.listLesson);
 
@@ -32,8 +34,8 @@ const VocabularyList = () => {
 
             console.log('chekc list lesson: ', res);
 
-            //setListLesson(res);
             dispatch(setListLesson(res));
+            console.log('goi tan toi nay');
         } catch (err) {
             console.log('check err: ', err);
         }
@@ -43,6 +45,10 @@ const VocabularyList = () => {
         handleGetAllListVoc();
         getAllLesson();
     }, []);
+    // useEffect(() => {
+    //     handleGetAllListVoc();
+    //     getAllLesson();
+    // }, [location]);
 
     return (
         <>
@@ -80,9 +86,7 @@ const VocabularyList = () => {
                                 listLesson.map((lesson, index) => (
                                     <a
                                         key={index}
-                                        href={`/complete-toeic/vocabulary-list/${
-                                            routeLink[index % routeLink.length]
-                                        }${item.list_id}`}>
+                                        href={`/complete-toeic/vocabulary/list/${item.list_id}/lesson/${lesson.lesson_id}`}>
                                         <div className="learncourse-unit-lesson-activity">
                                             <div className="learncourse-activity-title">
                                                 <div className="learncourse-activity-icon-wrapper">

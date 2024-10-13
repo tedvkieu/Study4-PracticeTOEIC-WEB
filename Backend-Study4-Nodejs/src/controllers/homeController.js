@@ -8,6 +8,7 @@ const {
     handleGetAlistVoc,
     handleGetListAnswer,
     handleGetListLesson,
+    handleChangeStatusStudy,
 } = require('../services/CRUDservices');
 
 const getHomePage = async (req, res) => {
@@ -102,6 +103,20 @@ const getListLesson = async (req, res) => {
     res.send(list);
 };
 
+const putStatusLesson = async (req, res) => {
+    const id = req.query.lesson_id;
+    try {
+        let rs = await handleChangeStatusStudy(id);
+
+        return res.status(200).json({
+            EC: 0,
+            message: rs,
+        });
+    } catch (e) {
+        return e;
+    }
+};
+
 module.exports = {
     getHomePage,
     getHelloWorld,
@@ -115,4 +130,5 @@ module.exports = {
     getAListVocabulary,
     getListPracticeAnswer,
     getListLesson,
+    putStatusLesson,
 };

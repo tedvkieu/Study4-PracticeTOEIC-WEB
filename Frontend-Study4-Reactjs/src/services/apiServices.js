@@ -87,7 +87,11 @@ const handleGetListAnswer = (id) => {
 
 const handleGetAllLesson = (id_unit) => {
     return axios.get(`/api/get-all-lesson?unit_id=${id_unit}`);
-}
+};
+
+const handleChangeStatusStudy = (id) => {
+    return axios.put(`/api/change-status-lesson?lesson_id=${id}`);
+};
 
 export {
     postCreateNewUser,
@@ -106,4 +110,5 @@ export {
     handleGetAListWord,
     handleGetListAnswer,
     handleGetAllLesson,
+    handleChangeStatusStudy,
 };

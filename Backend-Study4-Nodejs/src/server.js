@@ -1,12 +1,12 @@
 require('dotenv').config();
 const express = require('express');
-const mysql = require('mysql2');
+
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8081;
 const hostname = process.env.HOST_NAME || 'localhost';
 const connection = require('./config/database');
-const authController = require('./controllers/authController');
+
 const apiRoute = require('./routes/apiRoute');
 
 // Middleware
