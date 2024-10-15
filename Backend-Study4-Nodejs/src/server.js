@@ -1,6 +1,6 @@
 require('dotenv').config();
 const express = require('express');
-
+const fileUpload = require('express-fileupload');
 const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 8081;
@@ -11,6 +11,7 @@ const apiRoute = require('./routes/apiRoute');
 
 // Middleware
 app.use(cors());
+app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,7 +32,6 @@ app.get('/hello', (req, res) => {
 
         // Truy vấn dữ liệu từ bảng Users
         const [results] = await poolConnection.query('SELECT * FROM Users');
-        console.log('>>> Users: ', results);
 
         poolConnection.release(); // Trả lại kết nối cho pool
 

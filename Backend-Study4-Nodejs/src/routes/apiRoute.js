@@ -9,6 +9,24 @@ const {
     putStatusLesson,
 } = require('../controllers/homeController');
 const { getAllListUnit } = require('../controllers/lessonController');
+const {
+    getAllUser,
+    createAUser,
+    updateAUser,
+    deleteAUser,
+} = require('../controllers/userController');
+const {
+    postUploadSingleFileAPI,
+    postUploadMultipleFileAPI,
+} = require('../controllers/apiController');
+
+// ----------------------------------------------Upload File
+
+router.post('/api/file', postUploadSingleFileAPI);
+
+router.post('/api/files', postUploadMultipleFileAPI);
+
+// ---------------------------------------------
 
 router.post('/auth/login', authController.login);
 
@@ -22,9 +40,14 @@ router.get('/api/get-all-lesson', getListLesson);
 
 router.put('/api/change-status-lesson', putStatusLesson);
 
-
 // -------------------------- Unit  - Lesson
 
 router.get('/api/unit/get-all-list-unit', getAllListUnit);
+
+// --------------------------- Admin Management Participant---------------------
+router.get('/api/user', getAllUser);
+router.post('/api/user', createAUser);
+router.put('/api/user', updateAUser);
+router.delete('/api/user', deleteAUser);
 
 module.exports = router;
