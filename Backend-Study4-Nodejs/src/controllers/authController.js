@@ -1,57 +1,56 @@
-const User = require('../models/userModel');
-const jwt = require('jsonwebtoken');
+const { loginService, logoutService } = require('../services/authService');
 
-const authController = {
-    login: (req, res) => {
+const handleLogin = async (req, res) => {
+    try {
         const { email, password } = req.body;
 
-        User.findByEmail(email, (err, results) => {
-            if (err) {
-                return res
-                    .status(500)
-                    .json({ EC: 1, EM: 'Database query error' });
-            }
+        // Gọi hàm loginService để thực hiện đăng nhập
+        let result = await loginService(email, password);
 
-            if (results.length === 0) {
-                return res.status(401).json({ EC: 1, EM: 'User not found' });
-            }
-
-            const user = results[0];
-
-            // Kiểm tra mật khẩu
-            if (user.password !== password) {
-                return res.status(401).json({ EC: 1, EM: 'Invalid password' });
-            }
-
-            // Tạo token
-            const access_token = jwt.sign(
-                { id: user.id, email: user.email, role: user.role },
-                process.env.SECRET_KEY,
-                { expiresIn: '15m' }
-            );
-
-            const refresh_token = generateRefreshToken(user.id);
-
-            return res.json({
-                DT: {
-                    access_token,
-                    refresh_token,
-                    username: user.username,
-                    role: user.role,
-                    email: user.email,
-                    image: user.image,
-                },
-                EC: 0,
-                EM: 'Login succeed',
+        // Kiểm tra kết quả trả về từ loginService
+        if (result === 'Invalid password') {
+            return res.status(401).json({
+                EC: 1, // Error Code
+                EM: 'Invalid password', // Error Message
             });
+        } else if (result === 'User not found') {
+            return res.status(404).json({
+                EC: 1,
+                EM: 'User not found',
+            });
+        } else {
+            // Trả về thông tin người dùng và token
+            return res.status(200).json({
+                EC: 0, // Success Code
+                EM: 'Login succeed', // Success Message
+                DT: result, // Data
+            });
+        }
+    } catch (error) {
+        console.error('Error during login:', error);
+        return res.status(500).json({
+            EC: 1,
+            EM: 'Internal server error',
         });
-    },
+    }
 };
 
-const generateRefreshToken = (userId) => {
-    return jwt.sign({ id: userId }, process.env.SECRET_KEY, {
-        expiresIn: '7d',
-    });
+const handleLogout = async (req, res) => {
+    const { email, refresh_token } = req.body;
+
+    try {
+        // Gọi service để xử lý logout
+        const result = await logoutService(email, refresh_token);
+
+        // Trả về kết quả từ service
+        return res.status(result.EC === 0 ? 200 : 400).json(result);
+    } catch (error) {
+        console.error('Error during logout:', error);
+        return res.status(500).json({
+            EC: 1,
+            EM: 'Internal server error',
+        });
+    }
 };
 
-module.exports = { authController };
+module.exports = { handleLogin, handleLogout };

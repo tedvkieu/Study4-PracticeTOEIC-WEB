@@ -13,6 +13,15 @@ const instance = axios.create({
     baseURL: 'http://localhost:8080/',
 });
 
+const checkTokenExpiration = (token) => {
+    const decodedToken = jwt.decode(token);
+    if (decodedToken.exp * 1000 < Date.now()) {
+        // Token đã hết hạn
+        localStorage.removeItem('token'); // Hoặc Redux dispatch để xóa token
+        window.location.href = '/login'; // Điều hướng người dùng đến trang đăng nhập
+    }
+};
+
 // Add a request interceptor
 instance.interceptors.request.use(
     function (config) {

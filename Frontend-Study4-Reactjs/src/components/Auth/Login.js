@@ -21,6 +21,12 @@ const Login = (props) => {
             );
     };
 
+    const handleKeyDown = (event) => {
+        if (event && event.key === 'Enter') {
+            handleLogin();
+        }
+    };
+
     const handleLogin = async () => {
         // Validation
         const isValidEmail = validateEmail(email);
@@ -34,16 +40,17 @@ const Login = (props) => {
             return;
         }
 
-
         setIsLoadingData(true);
 
         // Submit
         let data = await postLogin(email, password);
+        console.log('data: ', data);
 
         if (data && data.EC === 0) {
             dispatch(doLogin(data));
             toast.success(data.EM);
             setIsLoadingData(false);
+
             navigate('/');
         }
 
@@ -83,6 +90,7 @@ const Login = (props) => {
                             onChange={(event) =>
                                 setPassword(event.target.value)
                             }
+                            onKeyDown={(event) => handleKeyDown(event)}
                         />
                     </div>
                     <span className="forgot-password">Forgot password?</span>
@@ -91,7 +99,9 @@ const Login = (props) => {
                             className="btn-submit"
                             onClick={() => handleLogin()}
                             disabled={isLoadingData}>
-                            {isLoadingData === true && <ImSpinner className="loaderIcon" />}
+                            {isLoadingData === true && (
+                                <ImSpinner className="loaderIcon" />
+                            )}
                             <span>Login to Tedvkieu</span>
                         </button>
                     </div>

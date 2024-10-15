@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { authController } = require('../controllers/authController');
+const { handleLogin, handleLogout } = require('../controllers/authController');
 const {
     getAllListVoc,
     getAListVocabulary,
@@ -28,8 +28,6 @@ router.post('/api/files', postUploadMultipleFileAPI);
 
 // ---------------------------------------------
 
-router.post('/auth/login', authController.login);
-
 router.get('/api/get-all-list-voc', getAllListVoc);
 
 router.get('/api/get-a-list-voc', getAListVocabulary);
@@ -49,5 +47,9 @@ router.get('/api/user', getAllUser);
 router.post('/api/user', createAUser);
 router.put('/api/user', updateAUser);
 router.delete('/api/user', deleteAUser);
+
+// ------------------------------- Authorized ------------------------------------
+router.post('/api/v1/login', handleLogin);
+router.post('/api/v1/logout', handleLogout);
 
 module.exports = router;

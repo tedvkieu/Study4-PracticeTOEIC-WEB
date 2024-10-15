@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route,  } from 'react-router-dom';
 import User from './components/User/User';
 import Admin from './components/Admin/Admin';
 import App from './App';
@@ -16,9 +16,9 @@ import ManageQuiz from './components/Admin/Content/Quiz/ManageQuiz';
 import Questions from './components/Admin/Content/Question/Questions';
 import VocabularyList from './components/User/Vocabulary/VocabularyList';
 import CompleteToeic from './components/User/MainCourse/CompleteToeic';
-import SlideFlashcard from './components/User/Vocabulary/Lesson/SlideFlashcard';
-import MultipleChoice from './components/User/Vocabulary/Lesson/MultipleChoice';
 import ManageLessonVocabulary from './components/User/Vocabulary/ManageLessonVocabulary';
+
+import PrivateRoute from './routes/PrivateRoute';
 
 const NotFound = () => {
     return (
@@ -29,6 +29,7 @@ const NotFound = () => {
 };
 
 const Layout = (props) => {
+
     return (
         <>
             <Routes>
@@ -37,7 +38,13 @@ const Layout = (props) => {
                     <Route path="users" element={<ListQuiz />}></Route>
                 </Route>
                 <Route path="/quiz/:id" element={<DetailQuiz />}></Route>
-                <Route path="admin" element={<Admin />}>
+                <Route
+                    path="admin"
+                    element={
+                        <PrivateRoute requiredRole="ADMIN">
+                            <Admin />
+                        </PrivateRoute>
+                    }>
                     <Route index element={<DashBoard />} />
                     <Route path="manage-user" element={<ManageUser />} />
                     <Route path="manage-quizzes" element={<ManageQuiz />} />
@@ -52,8 +59,6 @@ const Layout = (props) => {
                         path="vocabulary/list/:list_id/lesson/:lesson_id"
                         element={<ManageLessonVocabulary />}
                     />
-
-        
                 </Route>
 
                 <Route path="/login" element={<Login />} />

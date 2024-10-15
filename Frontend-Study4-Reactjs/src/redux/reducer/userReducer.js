@@ -3,6 +3,7 @@ import {
     FETCH_USER_LOGIN_SUCCESS,
     SET_LIST_VOC,
     SET_LIST_LESSON,
+    USER_LOGOUT_SUCCESS,
 } from '../action/userAction';
 const INITIAL_STATE = {
     account: {
@@ -26,16 +27,24 @@ const userReducer = (state = INITIAL_STATE, action) => {
                     access_token: action?.payload?.DT?.access_token,
                     refresh_token: action?.payload?.DT?.refresh_token,
                     username: action?.payload?.DT?.username,
+                    email: action?.payload?.DT?.email, // OK
                     image: action?.payload?.DT?.image,
                     role: action?.payload?.DT?.role,
                 },
                 isAuthenticated: true,
             };
 
-        case DECREMENT:
+        case USER_LOGOUT_SUCCESS:
             return {
                 ...state,
-                count: state.count - 1,
+                account: {
+                    access_token: '',
+                    refresh_token: '',
+                    username: '',
+                    image: '',
+                    role: '',
+                },
+                isAuthenticated: false,
             };
         case SET_LIST_VOC:
             return {

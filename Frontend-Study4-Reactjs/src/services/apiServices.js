@@ -93,6 +93,13 @@ const handleChangeStatusStudy = (id) => {
     return axios.put(`/api/change-status-lesson?lesson_id=${id}`);
 };
 
+const logout = (email, refresh_token) => {
+    return axios.post('api/v1/logout', {
+        email,
+        refresh_token,
+    });
+};
+
 export {
     postCreateNewUser,
     getAllUsers,
@@ -111,4 +118,5 @@ export {
     handleGetListAnswer,
     handleGetAllLesson,
     handleChangeStatusStudy,
+    logout,
 };
