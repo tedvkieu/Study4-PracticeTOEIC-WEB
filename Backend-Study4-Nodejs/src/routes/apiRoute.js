@@ -15,10 +15,14 @@ const {
     updateAUser,
     deleteAUser,
 } = require('../controllers/userController');
+
 const {
     postUploadSingleFileAPI,
     postUploadMultipleFileAPI,
+    getImage,
 } = require('../controllers/apiController');
+
+const unitController = require('../controllers/unitController');
 
 // ----------------------------------------------Upload File
 
@@ -26,6 +30,7 @@ router.post('/api/file', postUploadSingleFileAPI);
 
 router.post('/api/files', postUploadMultipleFileAPI);
 
+router.get('/api/get-image/:filename', getImage);
 // ---------------------------------------------
 
 router.get('/api/get-all-list-voc', getAllListVoc);
@@ -41,6 +46,10 @@ router.put('/api/change-status-lesson', putStatusLesson);
 // -------------------------- Unit  - Lesson
 
 router.get('/api/unit/get-all-list-unit', getAllListUnit);
+
+router.get('/api/unit/vocabulary', unitController.getAllListVocabulary);
+router.post('/api/unit/vocabulary', unitController.createAVocabulary);
+router.put('/api/unit/vocabulary', unitController.updateAVocabulary);
 
 // --------------------------- Admin Management Participant---------------------
 router.get('/api/user', getAllUser);

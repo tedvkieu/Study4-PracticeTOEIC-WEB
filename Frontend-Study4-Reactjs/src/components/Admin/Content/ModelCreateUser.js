@@ -66,7 +66,8 @@ const ModelCreateUser = (props) => {
             handleClose();
             //await props.fetchListUsers();
             props.setCurrentPage(1);
-            await props.fetchListUsersPaginate(1);
+            await props.fetchListUsers();
+            //await props.fetchListUsersPaginate(1);
         }
 
         if (data && data.EC !== 0) {

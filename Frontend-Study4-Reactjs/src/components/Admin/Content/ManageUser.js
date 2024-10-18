@@ -25,12 +25,13 @@ const ManageUser = (props) => {
     const [listUsers, setListUsers] = useState([]);
 
     useEffect(() => {
-        fetchListUsersPaginate(1);
+        //fetchListUsersPaginate(1);
+        fetchListUsers();
     }, []);
     const fetchListUsers = async () => {
         let res = await getAllUsers();
         if (res.EC === 0) {
-            setListUsers(res.DT);
+            setListUsers(res.data);
         }
     };
 

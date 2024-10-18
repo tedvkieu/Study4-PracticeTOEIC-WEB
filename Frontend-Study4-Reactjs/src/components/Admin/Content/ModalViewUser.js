@@ -14,6 +14,8 @@ const ModalViewUser = (props) => {
     const [role, setRole] = useState('USER');
     const [previewImg, setPreviewImg] = useState('');
 
+    const urlImage = 'http://localhost:8080/api/get-image/';
+
     useEffect(() => {
         console.log('run effect ', dataUpdate);
         if (!_.isEmpty(dataUpdate)) {
@@ -21,7 +23,7 @@ const ModalViewUser = (props) => {
             setUsername(dataUpdate.username);
             setRole(dataUpdate.role);
             if (dataUpdate.image) {
-                setPreviewImg(`data:image/jpeg;base64,${dataUpdate.image}`);
+                setPreviewImg(`${urlImage}${dataUpdate.image}`);
             }
         }
     }, [dataUpdate]);

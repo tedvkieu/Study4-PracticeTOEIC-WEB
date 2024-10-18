@@ -6,23 +6,25 @@ const postCreateNewUser = (email, password, username, role, image) => {
     data.append('password', password);
     data.append('username', username);
     data.append('role', role);
-    data.append('userImage', image);
+    data.append('image', image);
 
-    return axios.post('api/v1/participant', data); // da lay duong link local ben file instance
+    return axios.post('api/user', data); // da lay duong link local ben file instance
 };
 
-const putUpdateUser = (id, username, role, image) => {
+const putUpdateUser = (id, email, password, username, role, image) => {
     const data = new FormData();
     data.append('id', id);
+    data.append('email', email);
+    data.append('password', password);
     data.append('username', username);
     data.append('role', role);
-    data.append('userImage', image);
+    data.append('image', image);
 
-    return axios.put('api/v1/participant', data); // da lay duong link local ben file instance
+    return axios.put('api/user', data); // da lay duong link local ben file instance
 };
 
 const getAllUsers = () => {
-    return axios.get('api/v1/participant/all');
+    return axios.get('api/user');
 };
 
 const deleteUser = (userId) => {

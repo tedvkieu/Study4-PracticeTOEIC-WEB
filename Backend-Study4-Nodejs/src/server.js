@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 8081;
 const hostname = process.env.HOST_NAME || 'localhost';
 const connection = require('./config/database');
-
+const path = require('path');
 const apiRoute = require('./routes/apiRoute');
 
 // Middleware
@@ -14,6 +14,12 @@ app.use(cors());
 app.use(fileUpload());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+console.log('check dirname: ', __dirname);
+app.use(
+    '/images',
+    express.static(path.join(__dirname, 'public/images/upload'))
+);
 
 // Route
 app.use('/', apiRoute);

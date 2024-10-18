@@ -42,6 +42,7 @@ const updateAUser = async (req, res) => {
     let { id, email, password, username, role } = req.body;
 
     let imageUrl = '';
+    console.log('check fileeeeeeeeeeeeeee: ', req.files);
     if (!req.files || Object.keys(req.files).length === 0) {
         // do nothing
     } else {

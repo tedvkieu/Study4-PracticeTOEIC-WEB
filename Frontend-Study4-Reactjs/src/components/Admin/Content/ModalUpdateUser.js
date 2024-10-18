@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FcPlus } from 'react-icons/fc';
 import { toast } from 'react-toastify';
-import { putUpdateUser } from '../../../services/apiServices';
+import { putUpdateUser, getImage } from '../../../services/apiServices';
 import _ from 'lodash';
 
 const ModalUpdateUser = (props) => {
@@ -16,14 +16,19 @@ const ModalUpdateUser = (props) => {
     const [role, setRole] = useState('USER');
     const [previewImg, setPreviewImg] = useState('');
 
+    const urlImage = 'http://localhost:8080/api/get-image/';
+
     useEffect(() => {
         console.log('run effect ', dataUpdate);
         if (!_.isEmpty(dataUpdate)) {
             setEmail(dataUpdate.email);
+            setPassword(dataUpdate.password);
+
             setUsername(dataUpdate.username);
             setRole(dataUpdate.role);
+            //let img = getImage()
             if (dataUpdate.image) {
-                setPreviewImg(`data:image/jpeg;base64,${dataUpdate.image}`);
+                setPreviewImg(`${urlImage}${dataUpdate.image}`);
             }
         }
     }, [props.dataUpdate]);
@@ -63,8 +68,26 @@ const ModalUpdateUser = (props) => {
             return;
         }
 
-        let data = await putUpdateUser(dataUpdate.id, username, role, image);
+        console.log(
+            'check data: ',
+            dataUpdate.id,
+            email,
+            password,
+            username,
+            role,
+            image
+        );
+
+        let data = await putUpdateUser(
+            dataUpdate.id,
+            email,
+            password,
+            username,
+            role,
+            image
+        );
         console.log('check res: ', data);
+
         if (data && data.EC === 0) {
             toast.success(data.EM);
             handleClose();

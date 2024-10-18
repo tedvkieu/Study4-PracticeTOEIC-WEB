@@ -2,7 +2,7 @@ const connection = require('../config/database');
 
 const getAllUserService = async () => {
     try {
-        let [result, fields] = await connection.query('select * from users');
+        let [result] = await connection.query('select * from users');
 
         console.log('check data: ', result);
         if (result === null) {
@@ -51,7 +51,7 @@ const updateAUserService = async (data) => {
         `;
 
         // Thực hiện câu lệnh SQL
-        let [result, fields] = await connection.query(sql, [
+        await connection.query(sql, [
             data.email,
             data.password,
             data.username,
@@ -59,12 +59,10 @@ const updateAUserService = async (data) => {
             data.image,
             data.id,
         ]);
-        const [rows, fields2] = await connection.query(
+        const [rows, fields] = await connection.query(
             'SELECT * FROM users WHERE id = ?',
             [data.id]
         );
-
-        console.log('res: ', result);
 
         return rows;
     } catch (e) {
