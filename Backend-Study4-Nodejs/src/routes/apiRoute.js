@@ -6,6 +6,7 @@ const {
     getAListVocabulary,
     getListPracticeAnswer,
     getListLesson,
+    getAListLesson,
     putStatusLesson,
 } = require('../controllers/homeController');
 const { getAllListUnit } = require('../controllers/lessonController');
@@ -41,6 +42,7 @@ router.get('/api/get-list-practice/answer-voc', getListPracticeAnswer);
 
 router.get('/api/get-all-lesson', getListLesson);
 
+
 router.put('/api/change-status-lesson', putStatusLesson);
 
 // -------------------------- Unit  - Lesson
@@ -50,6 +52,7 @@ router.get('/api/unit/get-all-list-unit', getAllListUnit);
 router.get('/api/unit/vocabulary', unitController.getAllListVocabulary);
 router.post('/api/unit/vocabulary', unitController.createAVocabulary);
 router.put('/api/unit/vocabulary', unitController.updateAVocabulary);
+router.delete('/api/unit/vocabulary', unitController.deleteAVocabulary);
 
 // --------------------------- Admin Management Participant---------------------
 router.get('/api/user', getAllUser);

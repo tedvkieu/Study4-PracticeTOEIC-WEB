@@ -23,6 +23,7 @@ const MultipleChoice = (props) => {
 
     const switch_onChange_handle = () => {
         setIsSwitchOn(!isSwitchOn);
+        setAutoNextQuestion(!autoNextQuestion);
     };
     const handleClick = (index, isCorrect) => {
         setSelectedIndex(index);
@@ -66,7 +67,7 @@ const MultipleChoice = (props) => {
     };
 
     const changeStatusStudy = async () => {
-        let res = await handleChangeStatusStudy(lesson.lesson_id);
+        let res = await handleChangeStatusStudy(lesson.id);
 
         if (res.EC === 0) {
             getAllListLesson();
@@ -87,8 +88,7 @@ const MultipleChoice = (props) => {
 
     useEffect(() => {
         if (lesson) {
-            setStatusStudy(lesson.status_study);
-            console.log('check status: ', lesson.status_study);
+            setStatusStudy(lesson.learned);
         }
     }, [lesson]);
 

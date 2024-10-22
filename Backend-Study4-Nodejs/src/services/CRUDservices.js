@@ -1,4 +1,5 @@
 const connection = require('../config/database');
+const { getAll, getALesson } = require('../models/Lesson_ListVoc');
 
 const getAllUsers = async () => {
     let [results, fields] = await connection.query('select * from Users');
@@ -84,22 +85,29 @@ const handleGetListAnswer = async (vocabulary_id) => {
     }
 };
 
-const handleGetListLesson = async (id) => {
-    const [results, fields] = await connection.query(
-        'SELECT * FROM lesson WHERE unit_id = ?',
-        [id]
-    );
+const handleGetListLesson = async (userid, listid, lessonid) => {
+    // const [results, fields] = await connection.query(
+    //     'SELECT * FROM lesson WHERE unit_id = ?',
+    //     [id]
+    // );
 
-    return results;
+    if (lessonid) {
+        const [results, fields] = await getALesson(userid, listid, lessonid);
+        console.log('xem: ', results);
+        return results;
+    } else {
+        const [results, fields] = await getAll(userid);
+        console.log('xem: ', results);
+        return results;
+    }
 };
 
 const handleChangeStatusStudy = async (id) => {
     try {
         await connection.query(
-            'Update lesson set status_study = 1 WHERE lesson_id = ?',
+            'UPDATE lesson_list_vocabulary SET learned = 1, learned_date = NOW() WHERE id = ?',
             [id]
         );
-
         return 'Update Success';
     } catch (e) {
         return 'Failed Update';

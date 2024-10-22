@@ -97,11 +97,15 @@ const getListPracticeAnswer = async (req, res) => {
 };
 
 const getListLesson = async (req, res) => {
-    const id = req.query;
-    let list = await handleGetListLesson(id);
+    const user = req.query.user_id;
+    const listId = req.query.list_id;
+    const lessonId = req.query.lesson_id;
 
-    res.send(list);
+    let lesson = await handleGetListLesson(user, listId, lessonId);
+
+    res.send(lesson);
 };
+
 
 const putStatusLesson = async (req, res) => {
     const id = req.query.lesson_id;

@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import SlideFlashcard from './Lesson/SlideFlashcard';
 import MultipleChoice from './Lesson/MultipleChoice';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
     handleGetAListWord,
     handleGetAllLesson,
@@ -19,7 +19,8 @@ const lessonComponents = {
 const ManageLessonVocabulary = () => {
     //--------------------------------------------Config State----------------------------------------
     const { list_id, lesson_id } = useParams();
-    console.log('check list: ', list_id, '>>> lesson: ', lesson_id);
+    const userId = 1;
+
     const [listVocabulary, setListVocabulary] = useState([]);
     const [listWord, setListWord] = useState([]);
     const [listLesson, setListLesson] = useState([]);
@@ -41,20 +42,28 @@ const ManageLessonVocabulary = () => {
             console.error('Lỗi khi lấy từ vựng: ', error);
         }
     };
+
     const getAllListLesson = async () => {
         try {
-            let res = await handleGetAllLesson(1);
-
+            let res = await handleGetAllLesson(userId); // Dùng userId đã được định nghĩa
             setListLesson(res);
-            setCurrentLesson(res[lesson_id - 1]);
         } catch (err) {
             console.log('check err: ', err);
         }
     };
+    const getCurrentLesson = useCallback(async () => {
+        try {
+            let res = await handleGetAllLesson(1, list_id, lesson_id);
+
+            setCurrentLesson(res[0]);
+        } catch (err) {
+            console.log('check err: ', err);
+        }
+    }, [list_id, lesson_id]);
     const getAllListWord = async () => {
         try {
             let res = await getAllListVoc();
-            console.log('chekc list vocba: ', res);
+
             setListVocabulary(res);
         } catch (err) {
             console.log('check err: ', err);
@@ -76,15 +85,15 @@ const ManageLessonVocabulary = () => {
     });
 
     // ------------------------------------------------- React DOM ---------------------------------------
+
     useEffect(() => {
         getAListWord();
         getAllListWord();
-        getAllListLesson();
-    }, []);
 
-    useEffect(() => {
-        console.log('chekc lesson: ', currentLesson);
-    }, [currentLesson]);
+        getAllListLesson();
+        getCurrentLesson();
+        // eslint-disable-next-line
+    }, []);
 
     useEffect(() => {
         if (lesson_id) {

@@ -2,6 +2,7 @@ const {
     getAllVocabularyService,
     createVocabularyService,
     updateVocabularyService,
+    deleteVocabularyService,
 } = require('../services/unitService');
 
 const getAllListVocabulary = async (req, res) => {
@@ -16,6 +17,7 @@ const getAllListVocabulary = async (req, res) => {
 
 const createAVocabulary = async (req, res) => {
     const data = [
+        req.body.list_id,
         req.body.word,
         req.body.pronunciation,
         req.body.definition,
@@ -28,7 +30,6 @@ const createAVocabulary = async (req, res) => {
         req.body.need_review,
         req.body.audio_uk_url,
         req.body.audio_us_url,
-        req.body.list_id,
     ];
 
     let result = await createVocabularyService(data);
@@ -48,27 +49,13 @@ const createAVocabulary = async (req, res) => {
 };
 
 const updateAVocabulary = async (req, res) => {
-    const data = [
-        req.body.id,
-        req.body.list_id,
-        req.body.word,
-        req.body.pronunciation,
-        req.body.definition,
-        req.body.example,
-        req.body.image_url,
-        req.body.hint,
-        req.body.word_type,
-        req.body.learned,
-        req.body.remembered,
-        req.body.need_review,
-        req.body.audio_uk_url,
-        req.body.audio_us_url,
-    ];
+    const data = req.body;
+
     let result = await updateVocabularyService(data);
     if (result === 1) {
         return res.send({
             EC: -1,
-            EM: 'Do not find any word',
+            EM: 'Do not find any word to update',
             DT: null,
         });
     } else {
@@ -80,8 +67,28 @@ const updateAVocabulary = async (req, res) => {
     }
 };
 
+const deleteAVocabulary = async (req, res) => {
+    const id = req.body.id;
+
+    let result = await deleteVocabularyService(id);
+    if (result === 1) {
+        return res.send({
+            EC: -1,
+            EM: 'Do not find any word to delete',
+            DT: null,
+        });
+    } else {
+        return res.send({
+            EC: 0,
+            EM: `Word ${id} is deleted in List `,
+            DT: result,
+        });
+    }
+};
+
 module.exports = {
     getAllListVocabulary,
     createAVocabulary,
     updateAVocabulary,
+    deleteAVocabulary,
 };

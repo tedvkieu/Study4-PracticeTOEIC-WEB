@@ -44,8 +44,10 @@ const Header = () => {
                         <NavLink to="/" className="nav-link">
                             Home
                         </NavLink>
-                        <NavLink to="/users" className="nav-link">
-                            Users
+                        <NavLink
+                            to="/complete-toeic/learn"
+                            className="nav-link">
+                            Complete TOEIC
                         </NavLink>
                         <NavLink to="/admin" className="nav-link">
                             Admin

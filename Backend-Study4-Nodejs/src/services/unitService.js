@@ -35,14 +35,55 @@ const updateVocabularyService = async (data) => {
     const query = `
         UPDATE vocabulary 
         SET list_id = ?, word = ?, pronunciation = ?, definition = ?, example = ?, image_url = ?, hint = ?, word_type = ?, learned = ?, remembered = ?, need_review = ?, audio_uk_url = ?, audio_us_url = ?
-        WHERE id = ?
+        WHERE vocabulary_id = ?
+    `;
+    const queryData = [
+        data.list_id,
+        data.word,
+        data.pronunciation,
+        data.definition,
+        data.example,
+        data.image_url,
+        data.hint,
+        data.word_type,
+        data.learned,
+        data.remembered,
+        data.need_review,
+        data.audio_uk_url,
+        data.audio_us_url,
+        data.vocabulary_id,
+    ];
+
+    try {
+        // Chèn dữ liệu vào câu lệnh query
+        let [result, fields] = await connection.query(query, queryData);
+
+        if (result.changedRows === 1) {
+            const [rows, fields2] = await connection.query(
+                'SELECT * FROM vocabulary WHERE vocabulary_id = ?',
+                [data.vocabulary_id]
+            );
+
+            return rows;
+        } else {
+            return 1;
+        }
+    } catch (error) {
+        console.error('Error updating vocabulary:', error);
+        return error;
+    }
+};
+
+const deleteVocabularyService = async (id) => {
+    const query = `
+        delete from vocabulary WHERE vocabulary_id = ?
     `;
 
     try {
         // Chèn dữ liệu vào câu lệnh query
-        let [result, fields] = await connection.query(query, data);
+        let [result, fields] = await connection.query(query, id);
 
-        console.log('check update result:', result);
+        console.log('check delete result:', result);
 
         return result;
     } catch (error) {
@@ -72,8 +113,10 @@ const getTotalWordsByListId = async (listId) => {
         throw error; // Ném lại lỗi để controller có thể xử lý
     }
 };
+
 module.exports = {
     getAllVocabularyService,
     createVocabularyService,
     updateVocabularyService,
+    deleteVocabularyService,
 };

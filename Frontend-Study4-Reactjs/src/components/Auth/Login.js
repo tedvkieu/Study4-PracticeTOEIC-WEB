@@ -1,17 +1,31 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiServices';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { doLogin } from '../../redux/action/userAction';
 import { ImSpinner } from 'react-icons/im';
 const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isLoadingData, setIsLoadingData] = useState(false);
+
+    const role = useSelector((state) => state.user.account.role);
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        if (role) {
+            console.log('check role: ', role);
+            if (role === 'ADMIN') {
+                navigate('/admin');
+            } else {
+                navigate('/complete-toeic/learn');
+            }
+        }
+    }, [role, navigate]);
 
     const validateEmail = (email) => {
         return String(email)
@@ -51,7 +65,13 @@ const Login = (props) => {
             toast.success(data.EM);
             setIsLoadingData(false);
 
-            navigate('/');
+            console.log('check role: ', role);
+
+            if (role === 'ADMIN') {
+                navigate('/admin');
+            } else {
+                navigate('/complete-toeic/learn');
+            }
         }
 
         if (data && +data.EC !== 0) {
@@ -73,7 +93,7 @@ const Login = (props) => {
                 <div className="welcome col-4 mx-auto">Hello, Who's this?</div>
                 <div className="content-form col-4 mx-auto">
                     <div className="form-group">
-                        <label>EMail</label>
+                        <label>Email</label>
                         <input
                             type="email"
                             className="form-control"

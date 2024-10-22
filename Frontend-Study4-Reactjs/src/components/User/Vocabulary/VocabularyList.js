@@ -1,5 +1,5 @@
 import './VocabularyList.scss';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
     getAllListVoc,
     handleGetAllLesson,
@@ -10,32 +10,23 @@ import { FaRegCircle } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from 'react-redux';
 import { setListVoc, setListLesson } from '../../../redux/action/userAction';
-import { useLocation } from 'react-router-dom';
 
 const VocabularyList = () => {
-    //const [listVoc, setListVoc] = useState([]);
-    //const [listLesson, setListLesson] = useState([]);
-    const [routeLink] = useState(['word/', 'practice/multiple-choice/']);
     const dispatch = useDispatch();
-    const location = useLocation();
     const listVoc = useSelector((state) => state.user.listVoc);
     const listLesson = useSelector((state) => state.user.listLesson);
 
     const handleGetAllListVoc = async () => {
         let res = await getAllListVoc();
-        console.log('check list voc: ', res);
 
         dispatch(setListVoc(res));
-        console.log(res);
     };
+
     const getAllLesson = async () => {
         try {
             let res = await handleGetAllLesson(1);
 
-            console.log('chekc list lesson: ', res);
-
             dispatch(setListLesson(res));
-            console.log('goi tan toi nay');
         } catch (err) {
             console.log('check err: ', err);
         }
@@ -45,10 +36,6 @@ const VocabularyList = () => {
         handleGetAllListVoc();
         getAllLesson();
     }, []);
-    // useEffect(() => {
-    //     handleGetAllListVoc();
-    //     getAllLesson();
-    // }, [location]);
 
     return (
         <>
@@ -74,7 +61,7 @@ const VocabularyList = () => {
             </div>
 
             {listVoc && listVoc.length > 0 && listLesson ? (
-                listVoc.map((item, index) => (
+                listVoc.map((item) => (
                     <div className="content-block" key={item.list_id}>
                         <div className="card-header">
                             <h4 className="learncourse-heading mb-2">
@@ -82,16 +69,15 @@ const VocabularyList = () => {
                             </h4>
                         </div>
                         <div className="learncourse-unit-lesson-content">
-                            {listLesson &&
-                                listLesson.map((lesson, index) => (
+                            {listLesson.map((lesson) =>
+                                item.list_id === lesson.list_id ? (
                                     <a
-                                        key={index}
+                                        key={`${lesson.list_id}-${lesson.lesson_id}`} // Kết hợp list_id và lesson_id
                                         href={`/complete-toeic/vocabulary/list/${item.list_id}/lesson/${lesson.lesson_id}`}>
                                         <div className="learncourse-unit-lesson-activity">
                                             <div className="learncourse-activity-title">
                                                 <div className="learncourse-activity-icon-wrapper">
-                                                    {lesson.status_study ===
-                                                    1 ? (
+                                                    {lesson.learned === 1 ? (
                                                         <RiCheckboxCircleFill
                                                             style={{
                                                                 fontSize:
@@ -122,18 +108,19 @@ const VocabularyList = () => {
                                                         <strong>
                                                             Từ vựng:{' '}
                                                         </strong>
-                                                        {lesson.name}
+                                                        {lesson.lesson}
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </a>
-                                ))}
+                                ) : null
+                            )}
                         </div>
                     </div>
                 ))
             ) : (
-                <p>Loading...</p> // Thêm phần thông báo khi chưa có dữ liệu
+                <p>Loading...</p>
             )}
         </>
     );

@@ -1,18 +1,16 @@
-* {
-    caret-color: transparent; /* Tắt dấu nháy con trỏ */
-}
 .flashcards-container {
     width: 678px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 0 auto !important;
+    caret-color: transparent;
     .completion-bar {
-        background-color: #ffffff; 
-        color: rgb(0, 0, 0); 
-        padding: 10px; 
-        text-align: center; 
-        font-weight: bold; 
+        background-color: #ffffff;
+        color: rgb(0, 0, 0);
+        padding: 10px;
+        text-align: center;
+        font-weight: bold;
         width: 85%;
         position: fixed;
         bottom: 0;
@@ -21,8 +19,8 @@
         cursor: pointer;
         border-top: 1px solid #e0e0e0;
 
-        &:hover{
-            background-color: #f4f4f4; 
+        &:hover {
+            background-color: #f4f4f4;
         }
     }
 

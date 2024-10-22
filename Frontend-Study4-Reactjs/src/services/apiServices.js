@@ -87,8 +87,15 @@ const handleGetListAnswer = (id) => {
     return axios.get(`/api/get-list-practice/answer-voc?vocabulary_id=${id}`);
 };
 
-const handleGetAllLesson = (id_unit) => {
-    return axios.get(`/api/get-all-lesson?unit_id=${id_unit}`);
+const handleGetAllLesson = (user, list, lesson) => {
+    console.log('check lessonnnnnnnnnnnnn: ', lesson);
+    if (lesson) {
+        return axios.get(
+            `/api/get-all-lesson?user_id=${user}&list_id=${list}&lesson_id=${lesson}`
+        );
+    } else {
+        return axios.get(`/api/get-all-lesson?user_id=${user}`);
+    }
 };
 
 const handleChangeStatusStudy = (id) => {

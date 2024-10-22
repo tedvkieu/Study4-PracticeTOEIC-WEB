@@ -17,7 +17,6 @@ import './SideBarUser.scss';
 const SideBarFlashCard = (props) => {
     const navigate = useNavigate();
     const { collapsed, setCollapsed, toggled, handleToggleSidebar } = props;
- 
 
     const handleClickToggle = () => {
         setCollapsed((prev) => {
@@ -83,7 +82,7 @@ const SideBarFlashCard = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem>
                             List 1
-                            <Link to="/complete-toeic/vocabulary-list" />
+                            <Link to="/complete-toeic/vocabulary" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">

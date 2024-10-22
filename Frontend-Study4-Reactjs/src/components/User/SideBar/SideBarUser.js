@@ -82,13 +82,13 @@ const SideBarUser = (props) => {
                     <Menu iconShape="circle">
                         <MenuItem>
                             Từ Vựng TOEIC
-                            <Link to="/complete-toeic/vocabulary-list" />
+                            <Link to="/complete-toeic/vocabulary" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
                         <MenuItem>
                             Ngữ Pháp TOEIC
-                            <Link to="/admin" />
+                            <Link to="/complete-toeic/grammar" />
                         </MenuItem>
                     </Menu>
                     <Menu iconShape="circle">
