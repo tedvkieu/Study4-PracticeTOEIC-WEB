@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { setListLesson } from '../../../../redux/action/userAction';
 
 const SlideFlashcard = (props) => {
-    console.log('Cehck props: ', props);
+    console.log('check user id: ', props.user_id);
     const [flashCardState, setFlashCardState] = useState(false);
     const { listWord, lesson } = props;
     const [statusStudy, setStatusStudy] = useState(true);

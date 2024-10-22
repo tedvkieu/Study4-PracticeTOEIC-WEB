@@ -9,6 +9,7 @@ import {
 } from '../../../services/apiServices';
 import './ManageLessonVocabulary.scss';
 import FindPairVocabulary from './Lesson/FindPairVocabulary';
+import { useSelector } from 'react-redux';
 
 const lessonComponents = {
     1: SlideFlashcard,
@@ -21,6 +22,7 @@ const ManageLessonVocabulary = () => {
     const { list_id, lesson_id } = useParams();
     const userId = 1;
 
+    const user_id = useSelector((state) => state.user.account.id);
     const [listVocabulary, setListVocabulary] = useState([]);
     const [listWord, setListWord] = useState([]);
     const [listLesson, setListLesson] = useState([]);
@@ -105,6 +107,7 @@ const ManageLessonVocabulary = () => {
     return (
         <>
             <LessonComponent
+                user_id={user_id}
                 listWord={listWord}
                 lesson={currentLesson}
                 getAllListLesson={getAllListLesson}

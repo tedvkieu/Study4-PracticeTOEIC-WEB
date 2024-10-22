@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { handleLogin, handleLogout } = require('../controllers/authController');
+const {
+    handleLogin,
+    handleLogout,
+    handleRegister,
+} = require('../controllers/authController');
 const {
     getAllListVoc,
     getAListVocabulary,
@@ -63,5 +67,6 @@ router.delete('/api/user', deleteAUser);
 // ------------------------------- Authorized ------------------------------------
 router.post('/api/v1/login', handleLogin);
 router.post('/api/v1/logout', handleLogout);
+router.post('/api/v1/register', handleRegister);
 
 module.exports = router;

@@ -1,4 +1,23 @@
-const { loginService, logoutService } = require('../services/authService');
+const {
+    loginService,
+    logoutService,
+    createUser,
+} = require('../services/authService');
+
+const handleRegister = async (req, res) => {
+    const { username, email, password } = req.body;
+    const role = 'USER';
+    try {
+        const newUser = await createUser(username, email, password, role);
+        console.log('check new user: ', newUser);
+        res.status(201).json(newUser);
+    } catch (error) {
+        res.status(400).json({
+            EC: 1,
+            EM: 'Error creating user: ' + error.message,
+        });
+    }
+};
 
 const handleLogin = async (req, res) => {
     try {
@@ -53,4 +72,4 @@ const handleLogout = async (req, res) => {
     }
 };
 
-module.exports = { handleLogin, handleLogout };
+module.exports = { handleLogin, handleLogout, handleRegister };

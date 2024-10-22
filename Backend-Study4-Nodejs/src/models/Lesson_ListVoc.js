@@ -58,4 +58,31 @@ const getALesson = async (user_id, list_id, lesson_id) => {
     return rs;
 };
 
-module.exports = { getAll, getALesson };
+const setUpStateLearned = async (id) => {
+    try {
+        // Truy vấn danh sách lesson và vocabulary
+        let [listLesson] = await connection.query(
+            `SELECT * FROM lesson WHERE unit_id = 1`
+        );
+        let [listVoc] = await connection.query(`SELECT * FROM list_vocabulary`);
+
+        console.log('Check list lesson:', listLesson);
+        console.log('Check list vocabulary:', listVoc);
+
+        // Chèn dữ liệu vào bảng lesson_list_vocabulary
+        for (let i = 0; i < listVoc.length; i++) {
+            for (let j = 0; j < listLesson.length; j++) {
+                await connection.query(
+                    `INSERT INTO lesson_list_vocabulary (lesson_id, list_vocabulary_id, user_id, learned) VALUES (?, ?, ?, 0)`,
+                    [listLesson[j].lesson_id, listVoc[i].list_id, id]
+                );
+            }
+        }
+
+        console.log('Data inserted successfully');
+    } catch (error) {
+        console.error('Error setting up state learned:', error);
+    }
+};
+
+module.exports = { getAll, getALesson, setUpStateLearned };

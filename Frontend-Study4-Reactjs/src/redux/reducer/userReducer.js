@@ -9,6 +9,7 @@ const INITIAL_STATE = {
     account: {
         access_token: '',
         refresh_token: '',
+        id: '',
         username: '',
         image: '',
         role: '',
@@ -26,6 +27,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 account: {
                     access_token: action?.payload?.DT?.access_token,
                     refresh_token: action?.payload?.DT?.refresh_token,
+                    id: action?.payload?.DT?.user_id,
                     username: action?.payload?.DT?.username,
                     email: action?.payload?.DT?.email, // OK
                     image: action?.payload?.DT?.image,
@@ -40,6 +42,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 account: {
                     access_token: '',
                     refresh_token: '',
+                    id: '',
                     username: '',
                     image: '',
                     role: '',

@@ -51,8 +51,8 @@ const Register = (props) => {
                 <span> Already have an account?</span>
                 <button onClick={() => navigate('/login')}>Log in</button>
             </div>
-            <div className="title col-4 mx-auto">Hỏi Dân IT &amp; Eric</div>
-            <div className="welcome col-4 mx-auto">Start your journey?</div>
+            <div className="title col-4 mx-auto">Luyện thi TOEIC với &amp; Study4</div>
+            <div className="welcome col-4 mx-auto">Bạn đã sẵn sàng chinh phục hành trình này?</div>
             <div className="content-form col-4 mx-auto">
                 <div className="form-group">
                     <label>Email (*)</label>
@@ -106,7 +106,7 @@ const Register = (props) => {
                     <span
                         className="back"
                         onClick={() => {
-                            navigate('/');
+                            navigate('/complete-toeic/learn');
                         }}>
                         &#60;&#60; Go to Homepage
                     </span>
