@@ -13,6 +13,8 @@ import { setListVoc, setListLesson } from '../../../redux/action/userAction';
 
 const VocabularyList = () => {
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.account);
+    console.log('check user: ', user);
     const listVoc = useSelector((state) => state.user.listVoc);
     const listLesson = useSelector((state) => state.user.listLesson);
 
@@ -24,7 +26,7 @@ const VocabularyList = () => {
 
     const getAllLesson = async () => {
         try {
-            let res = await handleGetAllLesson(1);
+            let res = await handleGetAllLesson(user.id);
 
             console.log('check lesson: ', res);
 

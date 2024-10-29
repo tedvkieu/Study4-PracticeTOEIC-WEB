@@ -65,31 +65,36 @@ const loginService = async (email, password) => {
     // Gọi hàm findByEmail để tìm người dùng theo email
     let user = await User.findByEmail(email);
 
+    console.log('checkkkkkkkkk: ', user.password);
+
     if (user) {
-        if (user.password !== password) {
+        let check = await bcrypt.compareSync(password, user.password);
+
+        console.log('checkkkkkkkk: ', check);
+        if (check) {
+            // Tạo token
+            const access_token = jwt.sign(
+                { id: user.id, email: user.email, role: user.role },
+                process.env.SECRET_KEY,
+                { expiresIn: '5s' }
+            );
+
+            const refresh_token = generateRefreshToken(user.id);
+            await User.updateRefreshToken(user.id, refresh_token);
+
+            let data = {
+                access_token,
+                refresh_token,
+                user_id: user.id,
+                username: user.username,
+                role: user.role,
+                email: user.email,
+                image: user.image,
+            };
+            return data;
+        } else {
             return 'Invalid password';
         }
-
-        // Tạo token
-        const access_token = jwt.sign(
-            { id: user.id, email: user.email, role: user.role },
-            process.env.SECRET_KEY,
-            { expiresIn: '5s' }
-        );
-
-        const refresh_token = generateRefreshToken(user.id);
-        await User.updateRefreshToken(user.id, refresh_token);
-
-        let data = {
-            access_token,
-            refresh_token,
-            user_id: user.id,
-            username: user.username,
-            role: user.role,
-            email: user.email,
-            image: user.image,
-        };
-        return data;
     } else {
         return 'User not found';
     }
@@ -123,7 +128,7 @@ const logoutService = async (email, refresh_token) => {
 let hashUserPassword = (password) => {
     return new Promise(async (resolve, reject) => {
         try {
-            let hashPassword = await bcrypt.hashSync('B4c0//', salt);
+            let hashPassword = await bcrypt.hashSync(password, salt);
             resolve(hashPassword);
         } catch (e) {
             reject(e);
