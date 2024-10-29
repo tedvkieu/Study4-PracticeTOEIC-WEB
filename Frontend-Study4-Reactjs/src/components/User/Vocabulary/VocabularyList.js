@@ -26,6 +26,8 @@ const VocabularyList = () => {
         try {
             let res = await handleGetAllLesson(1);
 
+            console.log('check lesson: ', res);
+
             dispatch(setListLesson(res));
         } catch (err) {
             console.log('check err: ', err);
@@ -108,7 +110,7 @@ const VocabularyList = () => {
                                                         <strong>
                                                             Từ vựng:{' '}
                                                         </strong>
-                                                        {lesson.lesson}
+                                                        {lesson.name}
                                                     </div>
                                                 </div>
                                             </div>

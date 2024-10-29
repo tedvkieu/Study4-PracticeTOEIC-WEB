@@ -4,25 +4,24 @@ const connection = require('../config/database'); // Giả sử bạn đã kết
 
 const getAll = async (user_id) => {
     const query = `SELECT  
-                        lv.name AS list, 
-                        l.name AS lesson,
-                        llv.id,
+                        lv.name AS list,
+                        l.name,
                         llv.learned,
                         lv.total_words AS total,     
                         llv.learned_date,
-                        llv.list_vocabulary_id as list_id, 
+                        llv.list_id,
                         llv.lesson_id,
                         u.id as user
                     FROM 
-                        lesson_list_vocabulary llv
+                        lesson_vocabulary llv
                     JOIN 
                         lesson l ON llv.lesson_id = l.lesson_id
                     JOIN 
                         users u ON llv.user_id = u.id
                     JOIN 
-                        list_vocabulary lv ON llv.list_vocabulary_id = lv.list_id
+                        list_vocabulary lv ON llv.list_id = lv.list_id 
                     WHERE 
-                        u.id =1
+                        u.id =? 
                     ORDER BY 
                         lv.list_id asc, llv.lesson_id ASC;`;
 
@@ -32,29 +31,28 @@ const getAll = async (user_id) => {
 
 const getALesson = async (user_id, list_id, lesson_id) => {
     const query = `SELECT  
-                        lv.name AS list, 
-                        l.name AS lesson,
-                        llv.id,
+                        lv.name AS list,
+                        l.name,
                         llv.learned,
                         lv.total_words AS total,     
                         llv.learned_date,
-                        llv.list_vocabulary_id as list_id, 
+                        llv.list_id,
                         llv.lesson_id,
                         u.id as user
                     FROM 
-                        lesson_list_vocabulary llv
+                        lesson_vocabulary llv
                     JOIN 
                         lesson l ON llv.lesson_id = l.lesson_id
                     JOIN 
                         users u ON llv.user_id = u.id
                     JOIN 
-                        list_vocabulary lv ON llv.list_vocabulary_id = lv.list_id
+                        list_vocabulary lv ON llv.list_id = lv.list_id 
                     WHERE 
-                        u.id =? and list_id = ${list_id} and llv.lesson_id = ${lesson_id}
+                        u.id =${user_id} and llv.list_id = ${list_id} and llv.lesson_id = ${lesson_id}
                     ORDER BY 
                         lv.list_id asc, llv.lesson_id ASC;`;
 
-    let rs = connection.query(query, user_id);
+    let rs = connection.query(query);
     return rs;
 };
 
@@ -73,7 +71,7 @@ const setUpStateLearned = async (id) => {
         for (let i = 0; i < listVoc.length; i++) {
             for (let j = 0; j < listLesson.length; j++) {
                 await connection.query(
-                    `INSERT INTO lesson_list_vocabulary (lesson_id, list_vocabulary_id, user_id, learned) VALUES (?, ?, ?, 0)`,
+                    `INSERT INTO lesson_vocabulary (lesson_id, list_id, user_id, learned) VALUES (?, ?, ?, 0)`,
                     [listLesson[j].lesson_id, listVoc[i].list_id, id]
                 );
             }

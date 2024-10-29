@@ -102,11 +102,11 @@ const handleGetListLesson = async (userid, listid, lessonid) => {
     }
 };
 
-const handleChangeStatusStudy = async (id) => {
+const handleChangeStatusStudy = async (user, lesson, list) => {
     try {
         await connection.query(
-            'UPDATE lesson_list_vocabulary SET learned = 1, learned_date = NOW() WHERE id = ?',
-            [id]
+            'UPDATE lesson_vocabulary SET learned = 1, learned_date = NOW() WHERE user_id = ? and lesson_id =? and list_id =?',
+            [user, lesson, list]
         );
         return 'Update Success';
     } catch (e) {

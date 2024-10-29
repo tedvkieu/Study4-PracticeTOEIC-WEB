@@ -98,8 +98,8 @@ const handleGetAllLesson = (user, list, lesson) => {
     }
 };
 
-const handleChangeStatusStudy = (id) => {
-    return axios.put(`/api/change-status-lesson?lesson_id=${id}`);
+const handleChangeStatusStudy = (user, lesson, list) => {
+    return axios.put(`/api/change-status-lesson?user_id=${user}&lesson_id=${lesson}&list_id=${list}`);
 };
 
 const logout = (email, refresh_token) => {

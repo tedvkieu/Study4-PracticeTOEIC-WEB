@@ -19,6 +19,8 @@ const MultipleChoice = (props) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [statusStudy, setStatusStudy] = useState(true);
 
+    console.log('check lesson: ', lesson);
+
     const navigate = useNavigate();
 
     const switch_onChange_handle = () => {
@@ -67,7 +69,11 @@ const MultipleChoice = (props) => {
     };
 
     const changeStatusStudy = async () => {
-        let res = await handleChangeStatusStudy(lesson.id);
+        let res = await handleChangeStatusStudy(
+            lesson.user,
+            lesson.lesson_id,
+            lesson.list_id
+        );
 
         if (res.EC === 0) {
             getAllListLesson();

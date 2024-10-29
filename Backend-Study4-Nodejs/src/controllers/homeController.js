@@ -101,16 +101,19 @@ const getListLesson = async (req, res) => {
     const listId = req.query.list_id;
     const lessonId = req.query.lesson_id;
 
+    console.log('chekc all: ', user, listId, lessonId);
+
     let lesson = await handleGetListLesson(user, listId, lessonId);
 
     res.send(lesson);
 };
 
-
 const putStatusLesson = async (req, res) => {
-    const id = req.query.lesson_id;
+    const user = req.query.user_id;
+    const lesson = req.query.lesson_id;
+    const list = req.query.list_id;
     try {
-        let rs = await handleChangeStatusStudy(id);
+        let rs = await handleChangeStatusStudy(user,lesson, list);
 
         return res.status(200).json({
             EC: 0,

@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { setListLesson } from '../../../../redux/action/userAction';
 
 const SlideFlashcard = (props) => {
-    console.log('check user id: ', props.user_id);
+    console.log('check props: ', props);
     const [flashCardState, setFlashCardState] = useState(false);
     const { listWord, lesson } = props;
     const [statusStudy, setStatusStudy] = useState(true);
@@ -51,7 +51,11 @@ const SlideFlashcard = (props) => {
 
     console.log('check wordid: ', lesson.lesson_id);
     const changeStatusStudy = async () => {
-        let res = await handleChangeStatusStudy(lesson.id);
+        let res = await handleChangeStatusStudy(
+            props.lesson.user,
+            props.lesson.lesson_id,
+            props.lesson.list_id
+        );
 
         if (res.EC === 0) {
             let updatedLessonList = await handleGetAllLesson(1);
