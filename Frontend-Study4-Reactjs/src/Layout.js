@@ -20,6 +20,7 @@ import ManageLessonVocabulary from './components/User/Vocabulary/ManageLessonVoc
 
 import PrivateRoute from './routes/PrivateRoute';
 
+
 const NotFound = () => {
     return (
         <div className="container  mt-3 alert alert-danger">
@@ -66,6 +67,7 @@ const Layout = (props) => {
                         element={<ManageLessonVocabulary />}
                     />
                 </Route>
+         
 
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />

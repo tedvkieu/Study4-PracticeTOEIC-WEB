@@ -45,7 +45,7 @@ body {
                         letter-spacing: -0.2px;
                         font-style: bold;
 
-                        a {
+                        .user-topnav-profile {
                             text-transform: none;
                             padding: 0.3rem;
                             align-self: center;
@@ -76,6 +76,15 @@ body {
                                 }
                             }
                         }
+                        .custom-navbar-menu {
+                            position: absolute;
+                            right: 0px;
+                            top: 20px;
+                            z-index: 1000;
+                            .show {
+                                left: -130px !important;
+                            }
+                        }
                     }
                 }
             }
@@ -90,7 +99,7 @@ body {
                     display: flex; // Thiết lập Flexbox cho phần tử cha
                     border-bottom: 1px solid #e0e0e0;
                     align-items: center; // Căn giữa theo chiều dọc
-                
+
                     background-color: #f8f9fa; // Màu nền cho thanh điều hướng (tuỳ chọn)
                     margin-top: 10px;
                     //padding-top: 10px;
